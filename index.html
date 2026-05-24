@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWW Corpora — Corporate Universe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8B6E2E;
+    --ink: #0D0D0D;
+    --paper: #F5F0E8;
+    --paper-dark: #EDE6D6;
+    --white: #FEFCF8;
+    --gray: #6B6560;
+    --gray-light: #A09890;
+    --teal: #1D9E75;
+    --teal-light: #5DCAA5;
+    --purple: #534AB7;
+    --amber: #BA7517;
+    --coral: #D85A30;
+    --green: #3B6D11;
+    --blue: #185FA5;
+    --pink: #993556;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--paper);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .header-title span {
+    display: block;
+    color: var(--gold);
+  }
+
+  .header-sub {
+    font-size: 1.1rem;
+    color: var(--gray-light);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .header-scroll {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-dim);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    font-family: 'DM Mono', monospace;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── GOLD DIVIDER ── */
+  .gold-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 3rem;
+    max-width: 200px;
+  }
+  .gold-rule::before, .gold-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gold-dim);
+  }
+  .gold-rule-diamond {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-body {
+    color: var(--gray-light);
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  /* ── CORPORA OVERVIEW ── */
+  .corpora-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    margin-top: 3rem;
+    overflow: hidden;
+  }
+
+  .corpora-cell {
+    background: rgba(13,13,13,0.95);
+    padding: 2rem;
+  }
+
+  .corpora-cell-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .corpora-cell-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .corpora-cell-desc {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ── SUBSIDIARIES ── */
+  .subsidiary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .sub-card {
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 2px;
+    padding: 1.75rem;
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sub-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-color, var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .sub-card:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+  }
+
+  .sub-card:hover::before { transform: scaleX(1); }
+
+  .sub-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .sub-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .sub-card-tagline {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .sub-card-sdg {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--card-color, var(--gold));
+  }
+
+  .btn-generate {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.25rem;
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    color: var(--gray-light);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-generate:hover {
+    border-color: var(--card-color, var(--gold));
+    color: var(--card-color, var(--gold));
+  }
+
+  /* ── AI OUTPUT PANEL ── */
+  .output-panel {
+    position: fixed;
+    top: 0; right: 0;
+    width: min(620px, 95vw);
+    height: 100vh;
+    background: #111009;
+    border-left: 1px solid rgba(201,168,76,0.2);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .output-panel.open { transform: translateX(0); }
+
+  .panel-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+
+  .panel-close {
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.2s;
+  }
+
+  .panel-close:hover { color: var(--white); }
+
+  .panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+  }
+
+  .panel-body::-webkit-scrollbar { width: 4px; }
+  .panel-body::-webkit-scrollbar-track { background: transparent; }
+  .panel-body::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 2px; }
+
+  .panel-topic {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .panel-content {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--paper-dark);
+  }
+
+  .panel-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    margin: 1.5rem 0 0.75rem;
+    font-weight: 600;
+  }
+
+  .panel-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    margin: 1.2rem 0 0.5rem;
+    font-weight: 600;
+  }
+
+  .panel-content p { margin-bottom: 0.9rem; }
+
+  .panel-content ul {
+    margin: 0.5rem 0 1rem 1.2rem;
+  }
+
+  .panel-content li {
+    margin-bottom: 0.4rem;
+    color: var(--gray-light);
+  }
+
+  .panel-content strong { color: var(--gold-light); font-weight: 500; }
+
+  .panel-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.82rem;
+  }
+
+  .panel-content th {
+    text-align: left;
+    padding: 8px 10px;
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .panel-content td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--gray-light);
+    vertical-align: top;
+  }
+
+  .thinking-dots {
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .thinking-dots span {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: dotPulse 1.4s ease-in-out infinite;
+  }
+
+  .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  .panel-footer {
+    padding: 1rem 2rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    flex-shrink: 0;
+  }
+
+  .panel-input-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .panel-input {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    padding: 10px 14px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .panel-input:focus { border-color: rgba(201,168,76,0.4); }
+  .panel-input::placeholder { color: var(--gray); }
+
+  .panel-send {
+    padding: 10px 18px;
+    background: var(--gold);
+    border: none;
+    border-radius: 2px;
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .panel-send:hover { background: var(--gold-light); }
+
+  /* ── SDG SECTION ── */
+  .sdg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    margin-top: 2rem;
+  }
+
+  .sdg-pill {
+    padding: 12px;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .sdg-pill:hover {
+    border-color: rgba(255,255,255,0.2);
+    transform: scale(1.03);
+  }
+
+  .sdg-pill-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: block;
+  }
+
+  .sdg-pill-label {
+    font-size: 10px;
+    margin-top: 4px;
+    line-height: 1.3;
+    display: block;
+  }
+
+  /* ── FUNDING SECTION ── */
+  .funding-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.1);
+    margin-top: 3rem;
+    overflow: hidden;
+  }
+
+  .funding-cell {
+    background: var(--ink);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .funding-cell:hover { background: rgba(201,168,76,0.04); }
+
+  .funding-phase {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .funding-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .funding-desc {
+    font-size: 0.78rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ── OVERLAY ── */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.8rem;
+  }
+
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(13,13,13,0.9), transparent);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HORIZONTAL RULE ── */
+  .full-rule {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes dotPulse {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .subsidiary-grid { grid-template-columns: 1fr 1fr; }
+    .corpora-grid { grid-template-columns: 1fr; }
+    .funding-row { grid-template-columns: 1fr 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .subsidiary-grid { grid-template-columns: 1fr; }
+    .funding-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AWW</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#subsidiaries">Subsidiaries</a></li>
+    <li><a href="#sdg">SDG</a></li>
+    <li><a href="#funding">Funding</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="header-eyebrow">Established · Capital &amp; Foundation</div>
+  <h1 class="header-title">AWW<span>Corpora</span></h1>
+  <p class="header-sub">A diversified conglomerate engineered to fulfill every human need — from birth to end of life — aligned with all 17 United Nations Sustainable Development Goals.</p>
+  <div class="header-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll to explore</span>
+  </div>
+</header>
+
+<hr class="full-rule">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About the holding company</div>
+  <h2 class="section-title">The apex of a<br>corporate universe</h2>
+  <p class="section-body">AWW Corpora is the capital foundation and strategic parent of all subsidiary companies. It deploys equity, governs ESG compliance, and presents a unified investment thesis to global investors — from impact VCs to public markets.</p>
+
+  <div class="corpora-grid">
+    <div class="corpora-cell">
+      <div class="corpora-cell-label">Mission</div>
+      <div class="corpora-cell-value">Human lifecycle coverage</div>
+      <div class="corpora-cell-desc">Every product and service a human needs, from the moment of birth to end of life — owned and operated under one conglomerate.</div>
+    </div>
+    <div class="corpora-cell">
+      <div class="corpora-cell-label">Structure</div>
+      <div class="corpora-cell-value">Holding company + 9 subsidiaries</div>
+      <div class="corpora-cell-desc">AWW Corpora holds equity in each subsidiary, provides shared capital, and maintains consolidated financial and ESG reporting.</div>
+    </div>
+    <div class="corpora-cell">
+      <div class="corpora-cell-label">SDG Alignment</div>
+      <div class="corpora-cell-value">All 17 UN SDGs covered</div>
+      <div class="corpora-cell-desc">Each subsidiary is mapped to specific SDG targets, enabling green bond financing, impact investment, and ESG-mandated institutional capital.</div>
+    </div>
+    <div class="corpora-cell">
+      <div class="corpora-cell-label">Integration</div>
+      <div class="corpora-cell-value">Unified ERP + ESG Engine</div>
+      <div class="corpora-cell-desc">A single data platform connects all subsidiaries — integrated transactions, consolidated P&amp;L reporting, and real-time SDG impact scoring.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;text-align:center;">
+    <button class="btn-generate" style="max-width:320px;border-color:rgba(201,168,76,0.3);color:var(--gold);" onclick="generateContent('AWW Corpora holding company', 'Write a comprehensive overview of AWW Corpora as a holding company: its governance structure, investment thesis, capital allocation strategy, how it relates to each subsidiary, and what makes it attractive to institutional investors. Include sections on corporate governance, shareholder structure, board composition, and consolidated financial reporting.')">
+      Generate full Corpora report ↗
+    </button>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- SUBSIDIARIES -->
+<section id="subsidiaries">
+  <div class="section-label">9 Business verticals</div>
+  <h2 class="section-title">The corporate universe</h2>
+  <p class="section-body">Nine subsidiaries spanning every critical domain of human need. Each is independently scalable and investable while sharing capital, data, and brand equity through AWW Corpora.</p>
+
+  <div class="subsidiary-grid">
+
+    <div class="sub-card" style="--card-color: #1D9E75;">
+      <div class="sub-card-icon">⚕</div>
+      <div class="sub-card-name">AWW Health</div>
+      <div class="sub-card-tagline">Full-spectrum healthcare from birth to elderly care — clinics, hospitals, digital health, pharmacy.</div>
+      <div class="sub-card-sdg">SDG 3 · 1 · 10</div>
+      <button class="btn-generate" onclick="generateContent('AWW Health', 'Generate a complete business blueprint for AWW Health, a full-lifecycle healthcare company under AWW Corpora. Include: 6 care divisions (Maternal & Newborn, Child & Paediatric, Adult Primary Care, Mental Health, Specialist & Hospital, Elderly & Palliative), digital enablers (health app, diagnostics lab, pharmacy), 4 revenue streams (insurance premiums, fee-for-service, corporate wellness, data licensing), SDG 3 alignment with measurable KPIs, 5-year valuation projections, and integration with AWW Corpora ERP.')">Generate blueprint ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color: #185FA5;">
+      <div class="sub-card-icon">🎓</div>
+      <div class="sub-card-name">AWW Education</div>
+      <div class="sub-card-tagline">Early childhood through professional development — schools, universities, EdTech platforms.</div>
+      <div class="sub-card-sdg">SDG 4 · 10 · 8</div>
+      <button class="btn-generate" onclick="generateContent('AWW Education', 'Generate a complete business blueprint for AWW Education under AWW Corpora. Include: early childhood development centres, K-12 schools, university partnerships, professional and vocational training, an EdTech digital platform (LMS, adaptive learning, certifications), corporate training B2B arm, revenue streams (tuition, subscriptions, B2B contracts, government grants), SDG 4 measurable KPIs (literacy rates, enrollment, skills outcomes), 5-year financial model, and integration with AWW Health and AWW FinTech.')">Generate blueprint ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color: #3B6D11;">
+      <div class="sub-card-icon">🌾</div>
+      <div class="sub-card-name">AWW Food &amp; Agri</div>
+      <div class="sub-card-tagline">Farm to consumer — sustainable agriculture, food processing, distribution and retail.</div>
+      <div class="sub-card-sdg">SDG 2 · 12 · 13</div>
+      <button class="btn-generate" onclick="generateContent('AWW Food & Agri', 'Generate a complete business blueprint for AWW Food & Agri under AWW Corpora. Include: sustainable farming operations, food processing and manufacturing, cold-chain logistics, consumer food brands, agricultural technology (precision farming, IoT sensors), B2B food supply to AWW Health and AWW Consumer, export strategy, revenue streams, SDG 2 and 12 KPIs (zero hunger, responsible consumption), 5-year projections, and supply chain integration with AWW Logistics.')">Generate blueprint ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color: #BA7517;">
+      <div class="sub-card-icon">🏙</div>
+      <div class="sub-card-name">AWW Property</div>
+      <div class="sub-card-tagline">Housing, smart cities, and sustainable infrastructure — development, management, PropTech.</div>
+      <div class="sub-card-sdg">SDG 11 · 6 · 9</div>
+      <button class="btn-generate" onclick="generateContent('AWW Property', 'Generate a complete business blueprint for AWW Property under AWW Corpora. Include: residential and commercial real estate development, affordable housing programs, smart city infrastructure, property management services, PropTech digital platform, green building standards, REIT structure for investor returns, revenue streams (sales, rental income, management fees, PropTech SaaS), SDG 11 KPIs (affordable housing units, sustainable cities metrics), 5-year financial model, and integration with AWW Energy for smart buildings.')">Generate blueprint ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color: #D85A30;">
+      <div class="sub-card-icon">⚡</div>
+      <div class="sub-card-name">AWW Energy</div>
+      <div class="sub-card-tagline">Clean and renewable energy — solar, wind, storage, distribution and energy services.</div>
+      <div class="sub-card-sdg">SDG 7 · 13 · 9</div>
+      <button class="btn-generate" onclick="generateContent('AWW Energy', 'Generate a complete business blueprint for AWW Energy under AWW Corpora. Include: solar farm development, wind energy, battery storage systems, micro-grid solutions for rural areas, energy-as-a-service model for AWW subsidiaries, carbon credit generation, green hydrogen exploration, revenue streams (power purchase agreements, retail electricity, carbon trading, B2B energy contracts), SDG 7 and 13 KPIs (clean energy access, CO2 reduction), 5-year financial model, and integration with AWW Property smart buildings.')">Generate blueprint ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color: #993556;">
+      <div class="sub-card-icon">💳</div>
+      <div class="sub-card-name">AWW FinTech</div>
+      <div class="sub-card-tagline">Inclusive financial services — banking, insurance, lending, payments and wealth management.</div>
+      <div class="sub-card-sdg">SDG 8 · 10 · 1</div>
+      <button class="btn-generate" onclick="generateContent('AWW FinTech', 'Generate a complete business blueprint for AWW FinTech under AWW Corpora. Include: digital bank (savings, current accounts), micro-lending and BNPL, insurance products (health, life, property — linking to other AWW subsidiaries), payments and remittance platform, wealth management and investment products, embedded finance APIs for all AWW subsidiaries, financial inclusion programs for underbanked populations, revenue streams (net interest margin, insurance premiums, transaction fees, asset management fees), SDG 8 and 10 KPIs, and 5-year financial model.')">Generate blueprint ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color: #378ADD;">
+      <div class="sub-card-icon">💻</div>
+      <div class="sub-card-name">AWW Technology</div>
+      <div class="sub-card-tagline">AI, data infrastructure, cloud platforms, and digital transformation services.</div>
+      <div class="sub-card-sdg">SDG 9 · 17 · 4</div>
+      <button class="btn-generate" onclick="generateContent('AWW Technology', 'Generate a complete business blueprint for AWW Technology under AWW Corpora. Include: shared digital infrastructure for all 9 subsidiaries (cloud, data platform, ERP core), AI and machine learning capabilities (health diagnostics AI, EdTech adaptive learning, agri-tech precision farming), cybersecurity services, digital transformation consulting for external clients, SaaS products derived from internal tools, developer ecosystem, revenue streams (internal shared services transfer pricing, external SaaS revenue, consulting), SDG 9 KPIs (digital inclusion, innovation index), and 5-year financial model.')">Generate blueprint ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color: #1D9E75;">
+      <div class="sub-card-icon">🚚</div>
+      <div class="sub-card-name">AWW Logistics</div>
+      <div class="sub-card-tagline">End-to-end supply chain — last-mile delivery, warehousing, cold chain, and fleet management.</div>
+      <div class="sub-card-sdg">SDG 9 · 11 · 12</div>
+      <button class="btn-generate" onclick="generateContent('AWW Logistics', 'Generate a complete business blueprint for AWW Logistics under AWW Corpora. Include: warehousing and fulfilment centres, cold-chain logistics for AWW Health and AWW Food, last-mile delivery network, electric vehicle fleet strategy, logistics technology platform (tracking, route optimisation, predictive supply chain), B2B services for external clients, revenue streams (contracted logistics for AWW subsidiaries, third-party B2B, platform SaaS fees), SDG 9 and 12 KPIs (sustainable supply chain metrics), 5-year financial model, and integration with AWW Technology and AWW Food.')">Generate blueprint ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color: #639922;">
+      <div class="sub-card-icon">🛒</div>
+      <div class="sub-card-name">AWW Consumer</div>
+      <div class="sub-card-tagline">Daily essentials — personal care, household goods, wellness products, and retail channels.</div>
+      <div class="sub-card-sdg">SDG 12 · 3 · 1</div>
+      <button class="btn-generate" onclick="generateContent('AWW Consumer', 'Generate a complete business blueprint for AWW Consumer Goods under AWW Corpora. Include: personal care and hygiene product lines, household essentials, wellness and nutrition supplements (linked to AWW Health), omnichannel retail strategy (physical stores, e-commerce, modern trade), private label brand development, sustainability-focused packaging, D2C subscription model, revenue streams (product sales, subscriptions, licensing), SDG 12 KPIs (responsible consumption, eco packaging metrics), 5-year financial model, and product supply integration with AWW Food & Agri.')">Generate blueprint ↗</button>
+    </div>
+
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- SDG ALIGNMENT -->
+<section id="sdg">
+  <div class="section-label">Sustainability</div>
+  <h2 class="section-title">All 17 SDGs,<br>by design</h2>
+  <p class="section-body">Every subsidiary is mapped to specific UN Sustainable Development Goal targets with measurable KPIs — reported quarterly through the AWW ESG Engine to investors and stakeholders.</p>
+
+  <div class="sdg-grid">
+    <div class="sdg-pill" style="background:rgba(229,36,59,0.12);" onclick="generateContent('SDG 1 — No Poverty', 'Explain how AWW Corpora and its subsidiaries (particularly AWW FinTech, AWW Health, and AWW Consumer) address SDG 1 No Poverty. Include specific targets, measurable KPIs, programs, and how these contribute to investor impact reporting.')">
+      <span class="sdg-pill-number" style="color:#E5243B;">1</span>
+      <span class="sdg-pill-label" style="color:#E5243B;">No Poverty</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(221,166,58,0.12);" onclick="generateContent('SDG 2 — Zero Hunger', 'Explain how AWW Food & Agri and other AWW subsidiaries address SDG 2 Zero Hunger. Include specific targets, KPIs, programs, and investor impact metrics.')">
+      <span class="sdg-pill-number" style="color:#DDA63A;">2</span>
+      <span class="sdg-pill-label" style="color:#DDA63A;">Zero Hunger</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(76,159,56,0.12);" onclick="generateContent('SDG 3 — Good Health & Well-Being', 'Explain in detail how AWW Health addresses SDG 3 Good Health and Well-Being across all 13 sub-targets. Include KPIs for maternal mortality (3.1), child mortality (3.2), communicable diseases (3.3), NCDs (3.4), mental health (3.4), universal coverage (3.8), and health workforce (3.c). Provide measurable metrics and reporting framework.')">
+      <span class="sdg-pill-number" style="color:#4C9F38;">3</span>
+      <span class="sdg-pill-label" style="color:#4C9F38;">Good Health</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(197,25,45,0.12);" onclick="generateContent('SDG 4 — Quality Education', 'Explain how AWW Education addresses SDG 4 Quality Education. Include targets for early childhood education, primary completion rates, vocational training, literacy, and digital skills. Provide measurable KPIs and investor reporting framework.')">
+      <span class="sdg-pill-number" style="color:#C5192D;">4</span>
+      <span class="sdg-pill-label" style="color:#C5192D;">Education</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(255,58,33,0.12);" onclick="generateContent('SDG 5 — Gender Equality', 'Explain how AWW Corpora and its subsidiaries embed SDG 5 Gender Equality into operations — including board diversity, equal pay policies, maternal health programs, female entrepreneurship through AWW FinTech, and gender metrics in ESG reporting.')">
+      <span class="sdg-pill-number" style="color:#FF3A21;">5</span>
+      <span class="sdg-pill-label" style="color:#FF3A21;">Gender Equity</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(38,189,226,0.12);" onclick="generateContent('SDG 6 — Clean Water & Sanitation', 'Explain how AWW Property and AWW Agri address SDG 6 Clean Water and Sanitation in building design, agricultural water management, and community programs. Include KPIs and investor metrics.')">
+      <span class="sdg-pill-number" style="color:#26BDE2;">6</span>
+      <span class="sdg-pill-label" style="color:#26BDE2;">Clean Water</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(252,195,11,0.1);" onclick="generateContent('SDG 7 — Affordable & Clean Energy', 'Explain how AWW Energy addresses SDG 7 Affordable and Clean Energy. Include renewable energy capacity targets, energy access programs for underserved communities, clean energy percentage of AWW operations, and carbon reduction metrics for ESG investors.')">
+      <span class="sdg-pill-number" style="color:#BA7517;">7</span>
+      <span class="sdg-pill-label" style="color:#BA7517;">Clean Energy</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(162,25,66,0.12);" onclick="generateContent('SDG 8 — Decent Work & Economic Growth', 'Explain how AWW FinTech, AWW Logistics, and AWW Consumer address SDG 8 Decent Work and Economic Growth. Include job creation targets, fair wage policies, SME financing programs, and economic multiplier metrics.')">
+      <span class="sdg-pill-number" style="color:#A21942;">8</span>
+      <span class="sdg-pill-label" style="color:#A21942;">Decent Work</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(253,105,37,0.12);" onclick="generateContent('SDG 9 — Industry, Innovation & Infrastructure', 'Explain how AWW Technology, AWW Logistics, and AWW Energy address SDG 9. Include digital infrastructure investment, R&D spending, innovation KPIs, and how AWW contributes to national infrastructure development.')">
+      <span class="sdg-pill-number" style="color:#FD6925;">9</span>
+      <span class="sdg-pill-label" style="color:#FD6925;">Innovation</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(221,19,103,0.12);" onclick="generateContent('SDG 10 — Reduced Inequalities', 'Explain how AWW Corpora as a whole addresses SDG 10 Reduced Inequalities through tiered healthcare pricing, financial inclusion at AWW FinTech, affordable education, and inclusive employment policies. Include measurable metrics.')">
+      <span class="sdg-pill-number" style="color:#DD1367;">10</span>
+      <span class="sdg-pill-label" style="color:#DD1367;">Inequalities</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(253,157,36,0.1);" onclick="generateContent('SDG 11 — Sustainable Cities & Communities', 'Explain how AWW Property and AWW Logistics address SDG 11 Sustainable Cities. Include green building standards, affordable housing targets, smart city programs, public transport integration, and urban resilience metrics.')">
+      <span class="sdg-pill-number" style="color:#BA7517;">11</span>
+      <span class="sdg-pill-label" style="color:#BA7517;">Sustainable Cities</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(191,139,46,0.12);" onclick="generateContent('SDG 12 — Responsible Consumption & Production', 'Explain how AWW Consumer, AWW Food & Agri, and AWW Logistics address SDG 12. Include sustainable packaging targets, food waste reduction, circular economy initiatives, and responsible supply chain KPIs.')">
+      <span class="sdg-pill-number" style="color:#8B6E2E;">12</span>
+      <span class="sdg-pill-label" style="color:#8B6E2E;">Responsible Consump.</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(63,126,68,0.12);" onclick="generateContent('SDG 13 — Climate Action', 'Explain how AWW Energy and all subsidiaries address SDG 13 Climate Action. Include net zero targets, carbon footprint measurement across subsidiaries, climate risk disclosure framework, renewable energy transition plan, and science-based targets.')">
+      <span class="sdg-pill-number" style="color:#3F7E44;">13</span>
+      <span class="sdg-pill-label" style="color:#3F7E44;">Climate Action</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(10,151,217,0.12);" onclick="generateContent('SDG 14 — Life Below Water', 'Explain how AWW Food & Agri addresses SDG 14 through sustainable aquaculture, responsible fishing supply chains, and coastal community programs. Include KPIs and certification standards.')">
+      <span class="sdg-pill-number" style="color:#0A97D9;">14</span>
+      <span class="sdg-pill-label" style="color:#0A97D9;">Life Below Water</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(86,192,43,0.12);" onclick="generateContent('SDG 15 — Life on Land', 'Explain how AWW Food & Agri addresses SDG 15 Life on Land through reforestation programs, sustainable land use, biodiversity protection in agricultural operations, and zero-deforestation supply chain commitments.')">
+      <span class="sdg-pill-number" style="color:#56C02B;">15</span>
+      <span class="sdg-pill-label" style="color:#56C02B;">Life on Land</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(0,104,157,0.12);" onclick="generateContent('SDG 16 — Peace, Justice & Strong Institutions', 'Explain how AWW Corpora addresses SDG 16 through strong corporate governance, anti-corruption policies, transparent reporting, legal compliance across subsidiaries, and community programs that strengthen civil institutions.')">
+      <span class="sdg-pill-number" style="color:#00689D;">16</span>
+      <span class="sdg-pill-label" style="color:#00689D;">Peace & Justice</span>
+    </div>
+    <div class="sdg-pill" style="background:rgba(25,72,106,0.2);" onclick="generateContent('SDG 17 — Partnerships for the Goals', 'Explain how AWW Corpora uses SDG 17 Partnerships as a strategic advantage — public-private partnerships, international investor collaborations, cross-sector alliances, UN Global Compact membership, and how the conglomerate structure itself enables synergistic SDG impact across all 17 goals.')">
+      <span class="sdg-pill-number" style="color:#5DCAA5;">17</span>
+      <span class="sdg-pill-label" style="color:#5DCAA5;">Partnerships</span>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:2rem;">
+    <button class="btn-generate" style="max-width:380px;border-color:rgba(76,159,56,0.4);color:#4C9F38;" onclick="generateContent('Full SDG Impact Report', 'Generate a complete AWW Corpora SDG Impact Report. For each of the 17 SDGs, identify: (1) which AWW subsidiary is the primary contributor, (2) 3 measurable KPIs with annual targets, (3) reporting mechanism, and (4) link to investor ESG scoring. Format as a professional impact report with executive summary.')">Generate full SDG impact report ↗</button>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- FUNDING -->
+<section id="funding">
+  <div class="section-label">Capital strategy</div>
+  <h2 class="section-title">From seed to<br>public markets</h2>
+  <p class="section-body">AWW Corpora is structured for a staged funding journey — attracting impact capital early, scaling with private equity, leveraging green bonds tied to SDG performance, and ultimately listing on public markets.</p>
+
+  <div class="funding-row">
+    <div class="funding-cell" onclick="generateContent('Impact VC Strategy', 'Generate a detailed impact VC fundraising strategy for AWW Corpora Seed and Series A. Include: target investor profiles (impact VCs, family offices, DFIs), ideal pitch narrative, valuation methodology, equity structure, use of funds breakdown, key milestones to hit before raising, term sheet considerations, and a list of 10 real impact VC funds in Southeast Asia and globally that AWW Corpora should approach.')">
+      <div class="funding-phase">Phase 1</div>
+      <div class="funding-name">Impact VC</div>
+      <div class="funding-desc">Seed to Series B. SDG narrative. Early anchor subsidiaries.</div>
+    </div>
+    <div class="funding-cell" onclick="generateContent('Private Equity Growth Strategy', 'Generate a detailed private equity fundraising strategy for AWW Corpora growth stage. Include: PE fund target profiles, EBITDA requirements before PE raise, valuation multiples in healthcare and education, deal structure (minority vs majority), management incentive plans, 100-day value creation plan, exit planning, and a list of relevant PE funds active in Indonesia and Southeast Asia.')">
+      <div class="funding-phase">Phase 2</div>
+      <div class="funding-name">Private Equity</div>
+      <div class="funding-desc">Growth capital. Proven verticals. Operational scale.</div>
+    </div>
+    <div class="funding-cell" onclick="generateContent('Green Bond and ESG Financing Strategy', 'Generate a comprehensive green bond and sustainability-linked financing strategy for AWW Corpora. Include: green bond framework structure, eligible project categories tied to SDG targets, second-party opinion process, investor targeting (ESG institutional funds, sovereign wealth funds), pricing advantages, KPI-linked coupon step-down structures, reporting obligations, and how to obtain green bond certification from ICMA or equivalent body.')">
+      <div class="funding-phase">Phase 3</div>
+      <div class="funding-name">Green Bonds</div>
+      <div class="funding-desc">ESG-linked debt. Sustainability financing. Institutional capital.</div>
+    </div>
+    <div class="funding-cell" onclick="generateContent('IPO and Public Markets Strategy', 'Generate a comprehensive IPO strategy for AWW Corpora or its leading subsidiary. Include: which entity to list first (Corpora vs a subsidiary), exchange selection (IDX, SGX, NYSE), pre-IPO restructuring requirements, financial metrics needed (revenue, EBITDA, growth rate), ESG disclosure requirements for public markets, lock-up structures, anchor investor strategy, valuation benchmarking against comparable conglomerates, and 3-year IPO readiness roadmap.')">
+      <div class="funding-phase">Phase 4</div>
+      <div class="funding-name">IPO / Public</div>
+      <div class="funding-desc">Exit &amp; scale. Public listing. Maximum valuation.</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:2rem;">
+    <button class="btn-generate" style="max-width:360px;border-color:rgba(201,168,76,0.4);color:var(--gold);" onclick="generateContent('Full Investor Deck Structure', 'Generate a complete investor pitch deck outline for AWW Corpora seeking Series A funding. Include slide-by-slide breakdown: Problem, Solution, Market Size (TAM/SAM/SOM for each vertical), Business Model, Traction, Team, SDG Impact, Financial Projections (5-year), Funding Ask and Use of Funds, and Appendix. For each slide, provide key messages, recommended data points, and design notes.')">Generate investor deck structure ↗</button>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- INTEGRATION SECTION -->
+<section>
+  <div class="section-label">Technology backbone</div>
+  <h2 class="section-title">Integrated systems<br>across the universe</h2>
+  <p class="section-body">Three shared platforms connect all nine subsidiaries into a single operating system — enabling consolidated reporting, cross-subsidiary data intelligence, and real-time SDG impact tracking.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;">
+
+    <div class="sub-card" style="--card-color:var(--gray-light);">
+      <div class="sub-card-name">AWW ERP Core</div>
+      <div class="sub-card-tagline">Unified transaction processing, financial consolidation, and inter-subsidiary accounting across all 9 companies.</div>
+      <button class="btn-generate" onclick="generateContent('AWW ERP Core', 'Design the AWW ERP Core system that integrates all 9 AWW subsidiaries. Include: system architecture, modules required (Finance, HR, Supply Chain, CRM), build vs buy analysis (SAP vs Oracle vs custom), inter-company transaction handling, consolidated P&L generation, access controls per subsidiary, implementation roadmap, and estimated cost and timeline.')">Generate ERP design ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color:var(--gray-light);">
+      <div class="sub-card-name">AWW Data Platform</div>
+      <div class="sub-card-tagline">Single analytics and AI layer for all subsidiaries — real-time dashboards, predictive models, and management reporting.</div>
+      <button class="btn-generate" onclick="generateContent('AWW Data Platform', 'Design the AWW Data Platform that serves all 9 subsidiaries. Include: data lake architecture, real-time analytics dashboards, AI/ML use cases per subsidiary (health diagnostics, demand forecasting, credit scoring), data governance and privacy framework, investor-facing reporting dashboard, KPI definitions per subsidiary, implementation stack, and data monetisation strategy.')">Generate data platform design ↗</button>
+    </div>
+
+    <div class="sub-card" style="--card-color:var(--gray-light);">
+      <div class="sub-card-name">AWW ESG Engine</div>
+      <div class="sub-card-tagline">Real-time SDG impact scoring, ESG reporting automation, and green bond compliance tracking for investor dashboards.</div>
+      <button class="btn-generate" onclick="generateContent('AWW ESG Engine', 'Design the AWW ESG Engine — the system that tracks, scores, and reports ESG and SDG impact across all 9 subsidiaries. Include: SDG KPI framework (3 KPIs per subsidiary per relevant SDG), data collection methodology, scoring algorithm, investor-facing dashboard design, annual ESG report automation, third-party verification process, alignment with GRI, SASB, and TCFD reporting standards, and how this system supports green bond issuance and ESG-mandated institutional investors.')">Generate ESG engine design ↗</button>
+    </div>
+
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">AWW Corpora</span>
+  <p>Capital &amp; Foundation Holding Company · Building for every human need</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem;">Aligned with all 17 UN Sustainable Development Goals</p>
+</footer>
+
+<!-- SIDE PANEL -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="output-panel" id="outputPanel">
+  <div class="panel-header">
+    <div class="panel-title" id="panelTitle">Loading...</div>
+    <button class="panel-close" onclick="closePanel()">×</button>
+  </div>
+  <div class="panel-body" id="panelBody">
+    <div class="panel-topic" id="panelTopic"></div>
+    <div class="panel-content" id="panelContent">
+      <div class="thinking-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="panel-input-row">
+      <input type="text" class="panel-input" id="followUpInput" placeholder="Ask a follow-up question..." onkeydown="if(event.key==='Enter')sendFollowUp()">
+      <button class="panel-send" onclick="sendFollowUp()">Ask ↗</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let conversationHistory = [];
+  let currentTopic = '';
+
+  const SYSTEM_PROMPT = `You are the official AI consultant for AWW Corpora — a diversified conglomerate structured to fulfill every human need from birth to end of life, aligned with all 17 UN SDGs. AWW Corpora is the apex holding company with 9 subsidiaries:
+1. AWW Health — full lifecycle healthcare (SDG 3, 1, 10)
+2. AWW Education — early childhood to professional development (SDG 4, 10, 8)
+3. AWW Food & Agri — farm to consumer (SDG 2, 12, 13)
+4. AWW Property — housing and smart cities (SDG 11, 6, 9)
+5. AWW Energy — clean and renewable energy (SDG 7, 13)
+6. AWW FinTech — inclusive financial services (SDG 8, 10, 1)
+7. AWW Technology — AI and digital infrastructure (SDG 9, 17)
+8. AWW Logistics — supply chain and last-mile (SDG 9, 11, 12)
+9. AWW Consumer — daily essentials and retail (SDG 12, 3, 1)
+
+Three shared platforms: AWW ERP Core, AWW Data Platform, AWW ESG Engine.
+
+You generate detailed, professional business analysis, blueprints, and strategies for AWW Corpora. Your responses are comprehensive, specific, actionable, and formatted for clarity with headings, tables, and bullet points where appropriate. Write with the authority of a senior McKinsey consultant who also deeply understands impact investing and sustainable development. Always connect business strategy to SDG targets and investor value creation.
+
+Format your responses in clean HTML using <h2>, <h3>, <p>, <ul>, <li>, <strong>, and <table> tags. Make responses detailed and thorough — at least 600 words. Do not use markdown, only HTML tags.`;
+
+  async function generateContent(topic, prompt) {
+    currentTopic = topic;
+    conversationHistory = [{ role: 'user', content: prompt }];
+
+    document.getElementById('panelTitle').textContent = topic;
+    document.getElementById('panelTopic').textContent = topic.toUpperCase();
+    document.getElementById('panelContent').innerHTML = '<div class="thinking-dots"><span></span><span></span><span></span></div>';
+    document.getElementById('outputPanel').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+
+    await callAPI();
+  }
+
+  async function sendFollowUp() {
+    const input = document.getElementById('followUpInput');
+    const question = input.value.trim();
+    if (!question) return;
+    input.value = '';
+
+    conversationHistory.push({ role: 'user', content: question });
+    document.getElementById('panelContent').innerHTML += '<hr style="border-color:rgba(201,168,76,0.1);margin:1.5rem 0"><div class="thinking-dots"><span></span><span></span><span></span></div>';
+    document.getElementById('panelBody').scrollTop = document.getElementById('panelBody').scrollHeight;
+
+    await callAPI();
+  }
+
+  async function callAPI() {
+    try {
+      const response = await fetch('/.netlify/functions/claude-proxy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: SYSTEM_PROMPT,
+          messages: conversationHistory
+        })
+      });
+
+      const data = await response.json();
+      const text = data.content?.map(b => b.text || '').join('') || 'No response received.';
+
+      conversationHistory.push({ role: 'assistant', content: text });
+
+      const dots = document.getElementById('panelContent').querySelector('.thinking-dots:last-child');
+      if (dots) dots.remove();
+
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = text;
+      document.getElementById('panelContent').appendChild(wrapper);
+
+      document.getElementById('panelBody').scrollTop = document.getElementById('panelBody').scrollHeight;
+
+    } catch (err) {
+      const dots = document.getElementById('panelContent').querySelector('.thinking-dots:last-child');
+      if (dots) dots.remove();
+      document.getElementById('panelContent').innerHTML += '<p style="color:#E24B4A">Error connecting to the AI service. Please try again.</p>';
+    }
+  }
+
+  function closePanel() {
+    document.getElementById('outputPanel').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  // Scroll-based fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.sub-card, .corpora-cell, .sdg-pill, .funding-cell').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
