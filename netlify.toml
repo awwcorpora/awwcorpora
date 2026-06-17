@@ -1,5 +1,10 @@
+# Netlify configuration for AWW Corpora
 [build]
-  functions = "netlify/functions"
+  publish = "."                  # index.html lives in the repo root
+  functions = "netlify/functions" # serverless functions folder
+
+[functions]
+  node_bundler = "esbuild"
 
 [[headers]]
   for = "/*"
@@ -7,10 +12,3 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-# Netlify configuration for AWW Corpora
-[build]
-  publish = "."                     # index.html lives in the repo root
-  functions = "netlify/functions"   # serverless functions folder
-
-[functions]
-  node_bundler = "esbuild"
