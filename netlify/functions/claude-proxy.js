@@ -52,11 +52,15 @@ exports.handler = async (event) => {
     parts: [{ text: typeof m.content === "string" ? m.content : "" }],
   }));
 
+  // Disable Gemini 2.5 "thinking" so hidden reasoning doesn't eat the output budget
+  // (that causes truncated answers), and give a generous output budget.
+  const maxTokens = Math.min(Math.max(Number(payload.max_tokens) || 2048, 2048), 8192);
   const body = {
     contents,
     generationConfig: {
-      maxOutputTokens: payload.max_tokens || 2000,
+      maxOutputTokens: maxTokens,
       temperature: 0.7,
+      thinkingConfig: { thinkingBudget: 0 },
     },
   };
   if (payload.system) {
