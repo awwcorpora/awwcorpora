@@ -479,6 +479,17 @@
     .brand-logo--hero{width:min(300px,78vw);}
     .header-eyebrow{font-size:9px;letter-spacing:0.22em;}
   }
+
+  /* FIX: mobile full-screen menu was clipped/transparent because the nav's
+     backdrop-filter created a containing block for the fixed overlay. Remove the
+     blur on mobile and use a solid background so the menu covers the screen cleanly. */
+  @media (max-width: 768px){
+    nav{ -webkit-backdrop-filter:none; backdrop-filter:none; background:#0c0b09; }
+    .nav-links{ background:#0b0a08; gap:1.7rem; justify-content:center; }
+    .nav-links a{ font-size:1.05rem; letter-spacing:0.26em; color:var(--gold-light); }
+    .nav-close{ z-index:260; }
+    .nav-hamburger{ z-index:120; }
+  }
 </style>
 </head>
 
