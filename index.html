@@ -381,6 +381,12 @@
   .team-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .team-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: var(--gold-dim);
     border: 1px solid var(--line-strong); border-radius: 50px; padding: 4px 10px; text-transform: uppercase; }
+  .team-portfolio-badge { position: absolute; top: 14px; right: 14px; z-index: 2; display: flex; align-items: center; gap: 6px;
+    font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #1a1206;
+    background: var(--grad-gold); border-radius: 50px; padding: 7px 13px 7px 10px; text-decoration: none; box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    transition: transform 0.25s ease; }
+  .team-portfolio-badge:hover { transform: translateY(-2px) scale(1.03); }
+  .team-modal-portfolio-btn { margin-top: 1.4rem; }
 
   .team-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1001; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(4px); }
   .team-overlay.show { opacity: 1; pointer-events: all; }
@@ -828,6 +834,7 @@
       <div class="team-photo-wrap">
         <span class="team-photo" role="img" aria-label="Axel Wahyu Wicaksono"></span>
         <div class="team-photo-overlay"></div>
+        <a class="team-portfolio-badge" href="portfolio-axel.html" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="View Axel's professional Finance &amp; Accounting portfolio">💼 Portfolio</a>
       </div>
       <div class="team-info">
         <div class="team-role">Founder</div>
@@ -862,6 +869,7 @@
           <span>All 17 Goals</span><span>Impact Capital</span><span>Indonesia</span><span>Southeast Asia</span>
         </div>
       </div>
+      <a class="btn-primary team-modal-portfolio-btn" href="portfolio-axel.html" target="_blank" rel="noopener">💼 View Full Professional Portfolio →</a>
     </div>
   </div>
 </div>
