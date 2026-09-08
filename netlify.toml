@@ -1,9 +1,21 @@
 # Netlify configuration for AWW Corpora
 # © 2026 Axel Wahyu Wicaksono / AWW Corpora. All Rights Reserved.
+#
+# ALUR KERJA:
+#   Anda mengedit  index.html / portfolio-axel.html  di root repo
+#   Netlify menjalankan    npm run build
+#   Hasil minified masuk   dist/      <- inilah yang dipublikasikan
+#
+# Kalau build gagal, Netlify TIDAK menerbitkan apa pun dan situs lama tetap
+# hidup. Jadi salah ketik tidak akan pernah merusak situs yang sudah live.
 
 [build]
-  publish = "."                  # index.html lives in the repo root
-  functions = "netlify/functions" # serverless functions folder
+  command = "npm run build"
+  publish = "dist"                # hasil build, dibuat otomatis — JANGAN diedit
+  functions = "netlify/functions" # serverless functions (AWW AI)
+
+[build.environment]
+  NODE_VERSION = "20"
 
 [functions]
   node_bundler = "esbuild"
@@ -15,14 +27,13 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    # Situs lain tidak boleh menyematkan halaman Anda di dalam iframe mereka
-    # (mencegah orang membingkai ulang situs Anda seolah-olah miliknya).
+    # Situs lain tidak boleh menyematkan halaman Anda di dalam iframe mereka.
     X-Frame-Options = "DENY"
 
     # Browser tidak boleh menebak-nebak tipe file.
     X-Content-Type-Options = "nosniff"
 
-    # Alamat halaman Anda tidak bocor lengkap ke situs tujuan saat orang klik keluar.
+    # Alamat halaman Anda tidak bocor lengkap saat orang klik keluar.
     Referrer-Policy = "strict-origin-when-cross-origin"
 
     # Paksa HTTPS selama 2 tahun, termasuk semua subdomain.
@@ -32,24 +43,23 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
 
     # PENTING — Content Security Policy.
-    # Situs ini 100% mandiri: semua CSS & JS inline, tidak ada font/script/gambar
-    # dari luar. CSP di bawah mengunci itu, sehingga script asing tidak bisa
-    # disuntikkan ke halaman Anda.
+    # Situs ini 100% mandiri: semua CSS & JS inline, tidak ada resource dari luar.
     #
-    # ⚠ KALAU SUATU SAAT ANDA MENAMBAH RESOURCE DARI LUAR
-    #   (Google Fonts, Google Analytics, embed YouTube, gambar dari CDN),
-    #   resource itu akan DIBLOKIR sampai Anda menambahkan domainnya di sini.
-    #   Contoh menambah Google Fonts:
+    # ⚠ GAMBAR HANYA BOLEH DARI FOLDER assets/ MILIK ANDA SENDIRI.
+    #   Gambar dari Imgur, Google Drive, Unsplash, atau CDN mana pun akan
+    #   DIBLOKIR dan tidak tampil. Simpan gambar di assets/, panggil dengan
+    #   /assets/nama-file.jpg
+    #
+    # ⚠ KALAU MENAMBAH RESOURCE LUAR, daftarkan domainnya di sini. Contoh
+    #   untuk Google Fonts:
     #     style-src  ... https://fonts.googleapis.com;
     #     font-src   ... https://fonts.gstatic.com;
     Content-Security-Policy = "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; upgrade-insecure-requests"
 
 
 # ---------------------------------------------------------------------------
-# CV — jangan diindeks & jangan di-cache mesin pencari
+# CV — jangan diindeks mesin pencari
 # ---------------------------------------------------------------------------
-# File tetap bisa diunduh lewat tombol di situs Anda, tapi tidak akan muncul
-# sebagai hasil pencarian Google dan tidak disimpan di cache mereka.
 [[headers]]
   for = "/assets/*.pdf"
   [headers.values]
@@ -58,7 +68,7 @@
 
 
 # ---------------------------------------------------------------------------
-# Foto & aset — cache lama supaya situs cepat
+# Gambar & aset — cache lama supaya situs cepat
 # ---------------------------------------------------------------------------
 [[headers]]
   for = "/assets/*"

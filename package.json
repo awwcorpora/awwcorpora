@@ -1,0 +1,15 @@
+{
+  "name": "awwcorpora",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AWW Corpora — awwcorpora.web.id",
+  "author": "Axel Wahyu Wicaksono",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0"
+  }
+}
