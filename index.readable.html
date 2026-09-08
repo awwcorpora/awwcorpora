@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<!--!
+  ============================================================================
+  © 2026 Axel Wahyu Wicaksono / AWW Corpora. All Rights Reserved.
+  awwcorpora.web.id
+
+  This source code and its design are the exclusive property of AWW Corpora
+  and are protected by copyright law. No part of this file — including its
+  markup, styles, scripts, layout, or written content — may be copied,
+  reproduced, republished, adapted, or used to create derivative works,
+  in whole or in part, without prior written permission.
+
+  Unauthorised use will be pursued, including by takedown notice to the
+  offending party's host, registrar and search engines.
+  Enquiries: axelwahyu10@gmail.com
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232ad0ff'/%3E%3Cstop offset='.5' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%23ff4d8d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3C/svg%3E">
+<title>AWW Corpora — The Operating System for Human Life</title>
+<meta name="description" content="AWW Corpora is a diversified holding company engineered to own every need a person has — from birth to legacy — with all 17 UN Sustainable Development Goals built into the architecture.">
+<meta name="theme-color" content="#ffffff">
+<meta name="author" content="Axel Wahyu Wicaksono">
+<meta name="copyright" content="© 2026 AWW Corpora. All Rights Reserved.">
+<meta name="robots" content="index, follow, noarchive, max-image-preview:large">
+
+<style>
+/* ============================================================
+   AWW CORPORA — minimal, product-first redesign
+   Ubah identitas warna hanya di --g1 / --g2 / --g3
+   ============================================================ */
+:root{
+  --g1:#2ad0ff;
+  --g2:#7b5cff;
+  --g3:#ff4d8d;
+
+  --bg:#ffffff;
+  --bg-alt:#f5f5f7;
+  --ink:#1d1d1f;
+  --gray:#6e6e73;          /* dipakai juga oleh script lama */
+  --gray-light:#98989d;    /* dipakai juga oleh script lama */
+  --line:rgba(0,0,0,.09);
+  --card:#ffffff;
+
+  --max:1120px;
+  --pad:24px;
+  --r:22px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:70px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+  font-size:17px;line-height:1.5;letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.menu-open{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.wrap{max-width:var(--max);margin-left:auto;margin-right:auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+/* ---------- Tipografi ---------- */
+.eyebrow{
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gray);margin:0 0 18px;font-family:var(--mono);
+}
+h1{font-size:clamp(52px,11vw,124px);line-height:.92;letter-spacing:-.045em;font-weight:700;margin:0}
+h2{font-size:clamp(32px,5.4vw,62px);line-height:1.04;letter-spacing:-.032em;font-weight:700;margin:0 0 20px}
+h3{font-size:clamp(19px,2.2vw,25px);line-height:1.2;letter-spacing:-.02em;font-weight:600;margin:0 0 10px}
+.lede{font-size:clamp(17px,2vw,22px);line-height:1.5;color:var(--gray);max-width:52ch;margin:22px 0 0;letter-spacing:-.015em}
+.center{text-align:center}
+.center .lede{margin-left:auto;margin-right:auto}
+
+.grad{
+  background:linear-gradient(100deg,var(--g1),var(--g2) 45%,var(--g3) 78%,var(--g1));
+  background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:flow 9s var(--ease) infinite alternate;
+}
+@keyframes flow{from{background-position:0% 50%}to{background-position:100% 50%}}
+
+/* ---------- Tombol ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;justify-content:center;
+  padding:12px 24px;border-radius:999px;font-size:15px;font-weight:500;
+  background:var(--ink);color:#fff;border:1px solid var(--ink);cursor:pointer;
+  transition:transform .3s var(--ease),opacity .2s;
+}
+.btn:hover{transform:scale(1.04)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.sm{padding:8px 17px;font-size:13px}
+.btn.grad-btn{
+  background:linear-gradient(100deg,var(--g1),var(--g2) 50%,var(--g3));
+  background-size:200% 100%;border:0;color:#fff;animation:flow 8s var(--ease) infinite alternate;
+}
+.gen{
+  display:inline-flex;align-items:center;gap:7px;margin-top:18px;
+  font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--ink);
+  background:none;border:0;padding:0;cursor:pointer;text-align:left;
+}
+.gen::after{content:"↗";transition:transform .3s var(--ease);opacity:.5}
+.gen:hover::after{transform:translate(3px,-3px);opacity:1}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:-webkit-sticky;position:sticky;top:0;z-index:60;
+  backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  background:rgba(255,255,255,.72);
+  border-bottom:1px solid transparent;transition:border-color .3s;
+}
+.nav.stuck{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:26px;height:52px}
+.brand{font-weight:600;font-size:16px;letter-spacing:-.03em;display:flex;align-items:center;gap:9px}
+.mark{
+  width:22px;height:22px;border-radius:7px;flex:none;
+  background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3));background-size:200% 200%;
+  animation:flow 7s var(--ease) infinite alternate;
+}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:13.5px;color:var(--gray)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:6px;color:var(--ink)}
+.burger span{display:block;width:18px;height:1.5px;background:currentColor;margin:4px 0;border-radius:2px}
+@media(max-width:840px){
+  .burger{display:block}
+  .nav .right .btn{display:none}
+  .nav-links{
+    position:fixed;top:52px;right:0;left:0;bottom:auto;background:rgba(255,255,255,.97);
+    -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);flex-direction:column;gap:0;padding:8px 24px 24px;
+    border-bottom:1px solid var(--line);display:none;font-size:17px;
+  }
+  .nav-links.mobile-open{display:flex}
+  .nav-links li{padding:14px 0;border-bottom:1px solid var(--line)}
+}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:96px 0 60px;text-align:center;overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.aura-wrap{
+  position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;pointer-events:none;overflow:hidden;
+  will-change:transform;
+}
+.aura{
+  position:absolute;left:50%;top:34%;
+  width:min(130vw,1100px);height:min(130vw,1100px);
+  margin-left:calc(min(130vw,1100px) / -2);margin-top:calc(min(130vw,1100px) / -2);
+  background:
+    radial-gradient(closest-side,rgba(42,208,255,.55),transparent 70%) 20% 30%/60% 60% no-repeat,
+    radial-gradient(closest-side,rgba(123,92,255,.5),transparent 70%) 74% 26%/62% 62% no-repeat,
+    radial-gradient(closest-side,rgba(255,77,141,.45),transparent 70%) 45% 76%/64% 64% no-repeat;
+  filter:blur(64px);opacity:.5;pointer-events:none;
+  animation:drift 18s ease-in-out infinite alternate;
+}
+@keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.14)}}
+.hero h1 span{display:block}
+.hero-actions{display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  max-width:760px;margin:76px auto 0;padding-top:34px;border-top:1px solid var(--line);
+}
+.stats b{display:block;font-size:clamp(34px,5vw,52px);font-weight:700;letter-spacing:-.04em;line-height:1}
+.stats span{display:block;margin-top:8px;font-size:11px;letter-spacing:.13em;color:var(--gray);font-family:var(--mono)}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);gap:32px 20px}}
+
+/* ---------- Marquee partner ---------- */
+.marquee{padding:64px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--bg-alt)}
+.marquee .cap{text-align:center;margin-bottom:30px}
+.mq{display:flex;width:max-content;gap:12px;margin-bottom:12px}
+.mq1{animation:slide 46s linear infinite}
+.mq2{animation:slide 58s linear infinite reverse}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.partner-chip{
+  display:inline-flex;align-items:center;gap:9px;white-space:nowrap;
+  padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);
+  font-size:13.5px;color:var(--gray);
+}
+.partner-chip .dot{
+  background:linear-gradient(135deg,var(--g1),var(--g3));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  font-size:11px;
+}
+
+/* ---------- Section umum ---------- */
+section{position:relative}
+.sec{padding:120px 0}
+.sec.alt{background:var(--bg-alt)}
+@media(max-width:700px){.sec{padding:84px 0}}
+
+/* ---------- About: sticky story ---------- */
+.story-inner{display:grid;grid-template-columns:.95fr 1fr;gap:64px;align-items:start;margin-top:56px}
+.story-sticky{position:-webkit-sticky;position:sticky;top:104px}
+.panel-stack{
+  position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;
+  background:var(--card);border:1px solid var(--line);
+}
+.panel{position:absolute;top:0;right:0;bottom:0;left:0;display:grid;place-items:center;opacity:0;transform:scale(.96);
+  transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.panel.on{opacity:1;transform:scale(1)}
+.panel .glow{position:absolute;top:-25%;right:-25%;bottom:-25%;left:-25%;filter:blur(56px);opacity:.75}
+.panel .lbl{position:relative;font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--ink);
+  background:rgba(255,255,255,.75);padding:10px 16px;border-radius:999px;border:1px solid var(--line)}
+.corpora-cell{
+  padding:44px 0;border-top:1px solid var(--line);
+}
+.corpora-cell:first-child{border-top:0;padding-top:0}
+.corpora-cell .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gray);margin-bottom:14px}
+.corpora-cell p{margin:0;color:var(--gray);max-width:44ch}
+@media(max-width:900px){
+  .story-inner{grid-template-columns:1fr;gap:40px}
+  .story-sticky{position:static}
+  .panel-stack{aspect-ratio:16/10}
+}
+
+/* ---------- Universe: 9 subsidiary ---------- */
+.sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.sub-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:30px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.sub-card:hover{transform:translateY(-4px);box-shadow:0 24px 54px -30px rgba(0,0,0,.4)}
+.sub-card .ico{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:20px;
+  background:linear-gradient(140deg,var(--g1),var(--g2),var(--g3));background-size:200% 200%;
+  animation:flow 7s var(--ease) infinite alternate;margin-bottom:14px;
+  box-shadow:0 10px 24px -14px rgba(123,92,255,.9);
+}
+.sub-card p{margin:0;color:var(--gray);font-size:14.5px;flex:1}
+.sdg-tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gray-light);margin-top:14px}
+@media(max-width:900px){.sub-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.sub-grid{grid-template-columns:1fr}}
+
+/* ---------- SDG ---------- */
+.sdg-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:56px}
+.sdg-pill{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;
+  display:flex;flex-direction:column;gap:8px;transition:transform .4s var(--ease),border-color .3s;
+}
+.sdg-pill:hover{transform:translateY(-3px);border-color:rgba(123,92,255,.45)}
+.sdg-pill b{
+  font-size:22px;font-weight:700;letter-spacing:-.03em;
+  background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3));background-size:200% 200%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:flow 8s var(--ease) infinite alternate;
+}
+.sdg-pill span{font-size:12.5px;color:var(--gray);line-height:1.3}
+@media(max-width:1000px){.sdg-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:640px){.sdg-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- Capital phases ---------- */
+.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px;position:relative}
+.funding-cell{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;
+  display:flex;flex-direction:column;gap:8px;position:relative;
+}
+.funding-cell .ph{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gray)}
+.funding-cell .bar{height:3px;border-radius:3px;margin:6px 0 12px;
+  background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));background-size:200% 100%;
+  animation:flow 8s var(--ease) infinite alternate}
+.funding-cell p{margin:0;color:var(--gray);font-size:14.5px}
+@media(max-width:900px){.phase-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.phase-grid{grid-template-columns:1fr}}
+
+/* ---------- Artikel ---------- */
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.article-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  cursor:pointer;display:flex;flex-direction:column;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.article-card:hover{transform:translateY(-5px);box-shadow:0 26px 56px -32px rgba(0,0,0,.42)}
+.article-cover{aspect-ratio:16/9;overflow:hidden;background:var(--bg-alt)}
+.article-cover img{width:100%;height:100%;object-fit:cover}
+.article-cover.noimg{
+  background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3));background-size:200% 200%;
+  animation:flow 9s var(--ease) infinite alternate;opacity:.9;
+}
+.article-body{padding:26px;display:flex;flex-direction:column;gap:9px;flex:1}
+.article-cat{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.article-title{font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.article-excerpt{font-size:14px;color:var(--gray);flex:1}
+.article-meta{font-family:var(--mono);font-size:11px;color:var(--gray-light);letter-spacing:.08em}
+.article-empty{grid-column:1/-1;text-align:center;color:var(--gray);padding:60px 0}
+@media(max-width:900px){.articles-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.articles-grid{grid-template-columns:1fr}}
+
+/* ---------- Leadership ---------- */
+.founder{
+  margin-top:56px;background:var(--card);border:1px solid var(--line);border-radius:28px;
+  padding:44px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;cursor:pointer;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.founder:hover{transform:translateY(-4px);box-shadow:0 30px 64px -36px rgba(0,0,0,.4)}
+.avatar{
+  width:112px;height:112px;border-radius:32px;display:grid;place-items:center;
+  font-size:34px;font-weight:700;color:#fff;letter-spacing:-.04em;
+  background:linear-gradient(140deg,var(--g1),var(--g2),var(--g3));background-size:200% 200%;
+  animation:flow 8s var(--ease) infinite alternate;
+}
+.founder .role{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gray);margin-bottom:8px}
+.founder p{margin:8px 0 0;color:var(--gray);max-width:56ch}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:6px 12px;border-radius:999px;
+  border:1px solid var(--line);color:var(--gray)}
+@media(max-width:640px){.founder{grid-template-columns:1fr;padding:32px;gap:24px}}
+
+/* ---------- Platform ---------- */
+.plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.plat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden}
+.plat .blob{position:absolute;width:65%;aspect-ratio:1;right:-14%;top:-24%;border-radius:50%;
+  background:linear-gradient(140deg,var(--g1),var(--g3));filter:blur(44px);opacity:.32}
+.plat p{margin:0;color:var(--gray);font-size:14.5px;flex:1;position:relative}
+.plat h3{position:relative}
+@media(max-width:860px){.plat-grid{grid-template-columns:1fr}}
+
+/* ---------- Statement + Footer ---------- */
+.statement{padding:150px 0;text-align:center}
+.statement h2{font-size:clamp(34px,6.6vw,80px);max-width:17ch;margin-left:auto;margin-right:auto}
+footer{border-top:1px solid var(--line);padding:56px 0 72px;font-size:13px;color:var(--gray)}
+.fbar{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+
+/* ---------- Reveal ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ============================================================
+   OVERLAY, PANEL AI, DAN MODAL  (nama id/class dipertahankan
+   agar JavaScript lama tetap berfungsi)
+   ============================================================ */
+.overlay{
+  position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s;z-index:90;
+}
+.overlay.show{opacity:1;visibility:visible}
+
+/* Panel AI (slide dari kanan) */
+.output-panel{
+  position:fixed;top:0;right:0;bottom:0;width:min(620px,100%);z-index:100;
+  background:var(--bg);border-left:1px solid var(--line);
+  transform:translateX(102%);transition:transform .55s var(--ease);
+  display:flex;flex-direction:column;box-shadow:-30px 0 70px -40px rgba(0,0,0,.5);
+}
+.output-panel.open{transform:none}
+.panel-head{padding:22px 26px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:16px}
+.panel-head h3{margin:4px 0 0;font-size:20px}
+#panelTopic{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--gray)}
+.x{
+  margin-left:auto;background:var(--bg-alt);border:1px solid var(--line);border-radius:50%;
+  width:32px;height:32px;flex:none;cursor:pointer;font-size:16px;line-height:1;color:var(--ink);
+  transition:transform .3s var(--ease)
+}
+.x:hover{transform:rotate(90deg)}
+.panel-body{padding:26px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0}
+.panel-body h2{font-size:22px;margin:26px 0 10px}
+.panel-body h3{font-size:17px;margin:20px 0 8px}
+.panel-body p,.panel-body li{font-size:15px;color:var(--gray);line-height:1.6}
+.panel-body table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;display:block;overflow-x:auto}
+.panel-body img{max-width:100%;height:auto}
+.panel-body pre{overflow-x:auto}
+.panel-body th,.panel-body td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+.panel-body th{background:var(--bg-alt);font-weight:600}
+.panel-foot{padding:16px 26px 22px;border-top:1px solid var(--line);display:flex;gap:10px}
+.panel-foot input{
+  flex:1;padding:12px 16px;border-radius:999px;border:1px solid var(--line);
+  background:var(--bg-alt);color:var(--ink);font-size:14px;outline:none;
+}
+.panel-foot input:focus{border-color:rgba(123,92,255,.5)}
+.thinking-dots{display:flex;gap:6px;padding:12px 0}
+.thinking-dots span{
+  width:7px;height:7px;border-radius:50%;background:var(--g2);opacity:.4;
+  animation:blink 1.2s infinite;
+}
+.thinking-dots span:nth-child(2){animation-delay:.2s}
+.thinking-dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25;transform:scale(.85)}50%{opacity:1;transform:scale(1)}}
+
+/* Modal generik */
+.modal{
+  position:fixed;top:50%;left:50%;z-index:100;
+  width:min(760px,calc(100% - 40px));max-height:86vh;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  background:var(--bg);border:1px solid var(--line);border-radius:28px;
+  padding:40px;opacity:0;visibility:hidden;
+  transform:translate(-50%,-50%) translateY(14px) scale(.97);
+  transition:opacity .45s var(--ease),transform .45s var(--ease),visibility .45s;
+  box-shadow:0 40px 90px -50px rgba(0,0,0,.55);
+}
+.modal.open{opacity:1;visibility:visible;transform:translate(-50%,-50%)}
+.modal .x{position:absolute;top:22px;right:22px;margin:0}
+.reader-cover{
+  height:200px;border-radius:18px;margin-bottom:26px;overflow:hidden;
+  background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3));background-size:200% 200%;
+  animation:flow 9s var(--ease) infinite alternate;
+}
+.reader-cover img{width:100%;height:100%;object-fit:cover}
+#readerCat{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+#readerTitle{font-size:clamp(26px,4vw,38px);line-height:1.1;letter-spacing:-.03em;margin:10px 0 8px;font-weight:700}
+#readerMeta{font-family:var(--mono);font-size:11px;color:var(--gray-light);letter-spacing:.08em}
+#readerContent{margin-top:26px}
+#readerContent p,#readerContent li{color:var(--gray);font-size:16px;line-height:1.65}
+#readerContent h2{font-size:24px;margin:28px 0 10px;color:var(--ink)}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+
+/* Editor */
+.field{margin-bottom:18px}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--gray);margin-bottom:8px}
+.field input,.field textarea{
+  width:100%;padding:13px 16px;border-radius:14px;border:1px solid var(--line);
+  background:var(--bg-alt);color:var(--ink);font:inherit;font-size:15px;outline:none;resize:vertical;
+}
+.field textarea{min-height:220px;line-height:1.6}
+.field input:focus,.field textarea:focus{border-color:rgba(123,92,255,.5)}
+.hint{font-size:12.5px;color:var(--gray-light);margin:0 0 18px}
+
+/* Tombol AI mengambang */
+.fab{
+  position:fixed;right:22px;bottom:22px;z-index:80;
+  padding:14px 22px;border-radius:999px;border:0;cursor:pointer;color:#fff;font-size:14px;font-weight:600;
+  background:linear-gradient(100deg,var(--g1),var(--g2) 50%,var(--g3));background-size:200% 100%;
+  animation:flow 8s var(--ease) infinite alternate;
+  box-shadow:0 18px 40px -18px rgba(123,92,255,.85);
+  transition:transform .3s var(--ease);
+}
+.fab:hover{transform:scale(1.06)}
+@media(max-width:520px){.fab{right:16px;bottom:16px;padding:13px 18px;font-size:13px}}
+
+
+/* ============================================================
+   12. KOMPATIBILITAS PERANGKAT
+   ============================================================ */
+
+/* Fallback untuk browser tanpa aspect-ratio (iOS < 15, Android lawas) */
+@supports not (aspect-ratio: 1 / 1){
+  .panel-stack{height:520px}
+  .article-cover{height:190px}
+  .plat .blob{height:260px}
+  .sdg-pill b{line-height:1.1}
+}
+@supports not (aspect-ratio: 1 / 1){
+  @media(max-width:900px){ .panel-stack{height:300px} }
+}
+
+/* Safe area iPhone berponi / Android gesture bar */
+.fab{
+  right:calc(22px + env(safe-area-inset-right));
+  bottom:calc(22px + env(safe-area-inset-bottom));
+}
+footer{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+.wrap{
+  padding-left:calc(var(--pad) + env(safe-area-inset-left));
+  padding-right:calc(var(--pad) + env(safe-area-inset-right));
+}
+.panel-foot{padding-bottom:calc(22px + env(safe-area-inset-bottom))}
+.output-panel{padding-right:env(safe-area-inset-right)}
+
+/* iOS Safari auto-zoom saat fokus input jika font < 16px — cegah di perangkat sentuh */
+@media (pointer: coarse){
+  .panel-foot input,.field input,.field textarea{font-size:16px}
+}
+
+/* Tinggi layar dinamis bila didukung (bar browser mobile yang menyusut) */
+@supports (max-height: 86dvh){
+  .modal{max-height:86dvh}
+}
+
+/* Hilangkan kilat abu-abu saat tap di Android/iOS */
+a,button,.article-card,.founder,.sub-card{-webkit-tap-highlight-color:transparent}
+button,input,textarea{-webkit-appearance:none;appearance:none}
+.field input,.field textarea,.panel-foot input{border-radius:14px}
+.panel-foot input{border-radius:999px}
+.btn,.fab{border-radius:999px}
+
+/* Target sentuh minimum 44px di perangkat sentuh */
+@media (pointer: coarse){
+  .btn.sm{padding:11px 18px}
+  .x{width:40px;height:40px}
+  .gen{padding:6px 0}
+}
+
+/* Modal lebih lega di layar kecil */
+@media(max-width:480px){
+  .modal{padding:28px 20px;width:calc(100% - 28px);max-height:90vh;border-radius:22px}
+  .modal .x{top:16px;right:16px}
+  .modal-actions .btn{flex:1 1 auto}
+}
+
+/* Print */
+@media print{
+  .nav,.fab,.overlay,.output-panel,.modal,.marquee{display:none!important}
+  body{background:#fff;color:#000}
+  .reveal{opacity:1!important;transform:none!important}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark"></span>AWW Corpora</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#subsidiaries">Universe</a></li>
+      <li><a href="#sdg">SDG</a></li>
+      <li><a href="#funding">Capital</a></li>
+      <li><a href="#insight">Insight</a></li>
+      <li><a href="#teams">Leadership</a></li>
+    </ul>
+    <div class="right">
+      <button class="btn sm" onclick="openAssistant()">Ask AWW AI</button>
+      <button class="burger" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="aura-wrap"><div class="aura"></div></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Capital &amp; Foundation · From Birth to Legacy</p>
+    <h1 class="reveal d1">AWW <span class="grad">Corpora</span></h1>
+    <p class="lede reveal d2" style="margin-left:auto;margin-right:auto">
+      The operating system for human life. One diversified conglomerate engineered to own every need
+      a person has — from the moment of birth to end of life — with all 17 UN Sustainable Development
+      Goals built into the architecture.
+    </p>
+    <div class="hero-actions reveal d3">
+      <a class="btn" href="#subsidiaries">Enter the universe</a>
+      <button class="btn ghost" onclick="openAssistant()">✦ Consult AWW AI</button>
+    </div>
+    <div class="stats reveal d4">
+      <div><b>9</b><span>VERTICALS</span></div>
+      <div><b>17</b><span>UN SDGS</span></div>
+      <div><b>3</b><span>PLATFORMS</span></div>
+      <div><b>1</b><span>UNIVERSE</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== PARTNER MARQUEE ===================== -->
+<section class="marquee">
+  <div class="cap eyebrow">Building the ecosystem · Strategic partners &amp; capital allies</div>
+  <div class="mq mq1" id="mq1"></div>
+  <div class="mq mq2" id="mq2"></div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <p class="eyebrow reveal">About the holding company</p>
+    <h2 class="reveal d1">The apex of a<br><span class="grad">corporate universe</span></h2>
+    <p class="lede reveal d2">
+      AWW Corpora is the capital foundation and strategic parent of all subsidiary companies.
+      It deploys equity, governs ESG compliance, and presents a unified investment thesis to
+      global investors — from impact VCs to public markets.
+    </p>
+
+    <div class="story-inner">
+      <div class="story-sticky">
+        <div class="panel-stack">
+          <div class="panel on" data-panel="0">
+            <div class="glow" style="background:radial-gradient(closest-side,rgba(42,208,255,.5),transparent 70%)"></div>
+            <div class="lbl">MISSION</div>
+          </div>
+          <div class="panel" data-panel="1">
+            <div class="glow" style="background:radial-gradient(closest-side,rgba(123,92,255,.5),transparent 70%)"></div>
+            <div class="lbl">STRUCTURE</div>
+          </div>
+          <div class="panel" data-panel="2">
+            <div class="glow" style="background:radial-gradient(closest-side,rgba(255,77,141,.45),transparent 70%)"></div>
+            <div class="lbl">SDG ALIGNMENT</div>
+          </div>
+          <div class="panel" data-panel="3">
+            <div class="glow" style="background:radial-gradient(closest-side,rgba(42,208,255,.45),transparent 70%)"></div>
+            <div class="lbl">INTEGRATION</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-steps">
+        <div class="corpora-cell" data-step="0">
+          <div class="k">MISSION</div>
+          <h3>Human lifecycle coverage</h3>
+          <p>Every product and service a human needs, from the moment of birth to end of life — owned and operated under one conglomerate.</p>
+        </div>
+        <div class="corpora-cell" data-step="1">
+          <div class="k">STRUCTURE</div>
+          <h3>Holding company + 9 subsidiaries</h3>
+          <p>AWW Corpora holds equity in each subsidiary, provides shared capital, and maintains consolidated financial and ESG reporting.</p>
+        </div>
+        <div class="corpora-cell" data-step="2">
+          <div class="k">SDG ALIGNMENT</div>
+          <h3>All 17 UN SDGs covered</h3>
+          <p>Each subsidiary is mapped to specific SDG targets, enabling green bond financing, impact investment, and ESG-mandated institutional capital.</p>
+        </div>
+        <div class="corpora-cell" data-step="3">
+          <div class="k">INTEGRATION</div>
+          <h3>Unified ERP + ESG Engine</h3>
+          <p>A single data platform connects all subsidiaries — integrated transactions, consolidated P&amp;L reporting, and real-time SDG impact scoring.</p>
+          <button class="gen" onclick="generateContent('Full Corpora Report','Generate a comprehensive corporate report for AWW Corpora covering holding structure, the nine subsidiaries, SDG alignment, integration architecture, and the investment thesis.')">Generate full corpora report</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UNIVERSE ===================== -->
+<section class="sec alt" id="subsidiaries">
+  <div class="wrap">
+    <p class="eyebrow reveal">9 business verticals</p>
+    <h2 class="reveal d1">The corporate universe</h2>
+    <p class="lede reveal d2">
+      Nine subsidiaries spanning every critical domain of human need. Each is independently scalable
+      and investable while sharing capital, data, and brand equity through AWW Corpora.
+    </p>
+
+    <div class="sub-grid">
+      <div class="sub-card">
+        <div class="ico">⚕</div>
+        <h3>AWW Health</h3>
+        <p>Full-spectrum healthcare from birth to elderly care — clinics, hospitals, digital health, pharmacy.</p>
+        <div class="sdg-tag">SDG 3 · 1 · 10</div>
+        <button class="gen" onclick="generateContent('AWW Health Blueprint','Generate a detailed business blueprint for AWW Health — market, service lines, unit economics, SDG 3/1/10 KPIs, and a 5-year scaling roadmap.')">Generate blueprint</button>
+      </div>
+      <div class="sub-card">
+        <div class="ico">🎓</div>
+        <h3>AWW Education</h3>
+        <p>Early childhood through professional development — schools, universities, EdTech platforms.</p>
+        <div class="sdg-tag">SDG 4 · 10 · 8</div>
+        <button class="gen" onclick="generateContent('AWW Education Blueprint','Generate a detailed business blueprint for AWW Education — segments, delivery model, unit economics, SDG 4/10/8 KPIs, and a 5-year scaling roadmap.')">Generate blueprint</button>
+      </div>
+      <div class="sub-card">
+        <div class="ico">🌾</div>
+        <h3>AWW Food &amp; Agri</h3>
+        <p>Farm to consumer — sustainable agriculture, food processing, distribution and retail.</p>
+        <div class="sdg-tag">SDG 2 · 12 · 13</div>
+        <button class="gen" onclick="generateContent('AWW Food &amp; Agri Blueprint','Generate a detailed business blueprint for AWW Food &amp; Agri — value chain, sourcing, margins, SDG 2/12/13 KPIs, and a 5-year scaling roadmap.')">Generate blueprint</button>
+      </div>
+      <div class="sub-card">
+        <div class="ico">🏙</div>
+        <h3>AWW Property</h3>
+        <p>Housing, smart cities, and sustainable infrastructure — development, management, PropTech.</p>
+        <div class="sdg-tag">SDG 11 · 6 · 9</div>
+        <button class="gen" onclick="generateContent('AWW Property Blueprint','Generate a detailed business blueprint for AWW Property — development pipeline, capital structure, PropTech layer, SDG 11/6/9 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
+      </div>
+      <div class="sub-card">
+        <div class="ico">⚡</div>
+        <h3>AWW Energy</h3>
+        <p>Clean and renewable energy — solar, wind, storage, distribution and energy services.</p>
+        <div class="sdg-tag">SDG 7 · 13 · 9</div>
+        <button class="gen" onclick="generateContent('AWW Energy Blueprint','Generate a detailed business blueprint for AWW Energy — generation mix, PPA strategy, project finance, SDG 7/13/9 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
+      </div>
+      <div class="sub-card">
+        <div class="ico">💳</div>
+        <h3>AWW FinTech</h3>
+        <p>Inclusive financial services — banking, insurance, lending, payments and wealth management.</p>
+        <div class="sdg-tag">SDG 8 · 10 · 1</div>
+        <button class="gen" onclick="generateContent('AWW FinTech Blueprint','Generate a detailed business blueprint for AWW FinTech — product stack, licensing, risk model, SDG 8/10/1 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
+      </div>
+      <div class="sub-card">
+        <div class="ico">💻</div>
+        <h3>AWW Technology</h3>
+        <p>AI, data infrastructure, cloud platforms, and digital transformation services.</p>
+        <div class="sdg-tag">SDG 9 · 17 · 4</div>
+        <button class="gen" onclick="generateContent('AWW Technology Blueprint','Generate a detailed business blueprint for AWW Technology — platform architecture, internal vs external revenue, SDG 9/17/4 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
+      </div>
+      <div class="sub-card">
+        <div class="ico">🚚</div>
+        <h3>AWW Logistics</h3>
+        <p>End-to-end supply chain — last-mile delivery, warehousing, cold chain, and fleet management.</p>
+        <div class="sdg-tag">SDG 9 · 11 · 12</div>
+        <button class="gen" onclick="generateContent('AWW Logistics Blueprint','Generate a detailed business blueprint for AWW Logistics — network design, cold chain, fleet economics, SDG 9/11/12 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
+      </div>
+      <div class="sub-card">
+        <div class="ico">🛒</div>
+        <h3>AWW Consumer</h3>
+        <p>Daily essentials — personal care, household goods, wellness products, and retail channels.</p>
+        <div class="sdg-tag">SDG 12 · 3 · 1</div>
+        <button class="gen" onclick="generateContent('AWW Consumer Blueprint','Generate a detailed business blueprint for AWW Consumer — brand portfolio, channel strategy, margins, SDG 12/3/1 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SDG ===================== -->
+<section class="sec" id="sdg">
+  <div class="wrap">
+    <p class="eyebrow reveal">Sustainability</p>
+    <h2 class="reveal d1">All 17 SDGs,<br><span class="grad">by design</span></h2>
+    <p class="lede reveal d2">
+      Every subsidiary is mapped to specific UN Sustainable Development Goal targets with measurable
+      KPIs — reported quarterly through the AWW ESG Engine to investors and stakeholders.
+    </p>
+
+    <div class="sdg-grid">
+      <div class="sdg-pill"><b>1</b><span>No Poverty</span></div>
+      <div class="sdg-pill"><b>2</b><span>Zero Hunger</span></div>
+      <div class="sdg-pill"><b>3</b><span>Good Health</span></div>
+      <div class="sdg-pill"><b>4</b><span>Education</span></div>
+      <div class="sdg-pill"><b>5</b><span>Gender Equity</span></div>
+      <div class="sdg-pill"><b>6</b><span>Clean Water</span></div>
+      <div class="sdg-pill"><b>7</b><span>Clean Energy</span></div>
+      <div class="sdg-pill"><b>8</b><span>Decent Work</span></div>
+      <div class="sdg-pill"><b>9</b><span>Innovation</span></div>
+      <div class="sdg-pill"><b>10</b><span>Inequalities</span></div>
+      <div class="sdg-pill"><b>11</b><span>Sustainable Cities</span></div>
+      <div class="sdg-pill"><b>12</b><span>Responsible Consump.</span></div>
+      <div class="sdg-pill"><b>13</b><span>Climate Action</span></div>
+      <div class="sdg-pill"><b>14</b><span>Life Below Water</span></div>
+      <div class="sdg-pill"><b>15</b><span>Life on Land</span></div>
+      <div class="sdg-pill"><b>16</b><span>Peace &amp; Justice</span></div>
+      <div class="sdg-pill"><b>17</b><span>Partnerships</span></div>
+    </div>
+    <button class="gen reveal" onclick="generateContent('Full SDG Impact Report','Generate a full SDG impact report for AWW Corpora: map all nine subsidiaries to the 17 UN SDGs with three measurable KPIs each, quarterly reporting cadence, and how this unlocks green bond and impact capital.')">Generate full SDG impact report</button>
+  </div>
+</section>
+
+<!-- ===================== CAPITAL ===================== -->
+<section class="sec alt" id="funding">
+  <div class="wrap">
+    <p class="eyebrow reveal">Capital strategy</p>
+    <h2 class="reveal d1">From seed to<br><span class="grad">public markets</span></h2>
+    <p class="lede reveal d2">
+      AWW Corpora is structured for a staged funding journey — attracting impact capital early,
+      scaling with private equity, leveraging green bonds tied to SDG performance, and ultimately
+      listing on public markets.
+    </p>
+
+    <div class="phase-grid">
+      <div class="funding-cell">
+        <div class="ph">PHASE 1</div><div class="bar"></div>
+        <h3>Impact VC</h3>
+        <p>Seed to Series B. SDG narrative. Early anchor subsidiaries.</p>
+      </div>
+      <div class="funding-cell">
+        <div class="ph">PHASE 2</div><div class="bar"></div>
+        <h3>Private Equity</h3>
+        <p>Growth capital. Proven verticals. Operational scale.</p>
+      </div>
+      <div class="funding-cell">
+        <div class="ph">PHASE 3</div><div class="bar"></div>
+        <h3>Green Bonds</h3>
+        <p>ESG-linked debt. Sustainability financing. Institutional capital.</p>
+      </div>
+      <div class="funding-cell">
+        <div class="ph">PHASE 4</div><div class="bar"></div>
+        <h3>IPO / Public</h3>
+        <p>Exit &amp; scale. Public listing. Maximum valuation.</p>
+      </div>
+    </div>
+    <button class="gen reveal" onclick="generateContent('Investor Deck Structure','Generate a complete investor deck structure for AWW Corpora — slide-by-slide outline with the narrative, key metrics, SDG collateral, capital roadmap from impact VC to IPO, and the ask.')">Generate investor deck structure</button>
+  </div>
+</section>
+
+<!-- ===================== INSIGHT ===================== -->
+<section class="sec" id="insight">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow reveal">Insight &amp; press</p>
+        <h2 class="reveal d1">The thinking behind<br>the universe</h2>
+        <p class="lede reveal d2" style="margin-top:0">
+          Founder essays, strategy notes, and impact reporting from inside AWW Corpora.
+          Publish your own — every article can be drafted with the AWW AI engine.
+        </p>
+      </div>
+      <button class="btn ghost reveal d2" onclick="openEditor()">＋ Write article</button>
+    </div>
+    <div class="articles-grid" id="articlesGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== LEADERSHIP ===================== -->
+<section class="sec alt" id="teams">
+  <div class="wrap">
+    <p class="eyebrow reveal">Leadership</p>
+    <h2 class="reveal d1">The people behind<br><span class="grad">the universe</span></h2>
+    <p class="lede reveal d2">
+      Visionary leaders driving AWW Corpora's mission to fulfill every human need — from birth to
+      end of life — across all 17 UN Sustainable Development Goals.
+    </p>
+
+    <div class="founder reveal d2" onclick="openTeamCard()">
+      <div class="avatar">AW</div>
+      <div>
+        <div class="role">FOUNDER</div>
+        <h3>Axel Wahyu Wicaksono</h3>
+        <p>Visionary entrepreneur building AWW Corpora as a diversified conglomerate aligned with all
+           17 UN SDGs — fulfilling every human need from birth to end of life.</p>
+        <div class="tags">
+          <span class="tag">STRATEGY</span>
+          <span class="tag">IMPACT INVESTING</span>
+          <span class="tag">SDG ALIGNMENT</span>
+        </div>
+        <a class="btn sm ghost" href="/portfolio-axel" onclick="event.stopPropagation()"
+           style="margin-top:20px">💼 Portfolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PLATFORMS ===================== -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow reveal">Technology backbone</p>
+    <h2 class="reveal d1">Integrated systems<br>across the universe</h2>
+    <p class="lede reveal d2">
+      Three shared platforms connect all nine subsidiaries into a single operating system — enabling
+      consolidated reporting, cross-subsidiary data intelligence, and real-time SDG impact tracking.
+    </p>
+
+    <div class="plat-grid">
+      <div class="plat reveal"><div class="blob"></div>
+        <h3>AWW ERP Core</h3>
+        <p>Unified transaction processing, financial consolidation, and inter-subsidiary accounting across all 9 companies.</p>
+        <button class="gen" onclick="generateContent('AWW ERP Core Design','Design the AWW ERP Core: module architecture, inter-subsidiary accounting, consolidation logic, data model, and a phased rollout plan across nine subsidiaries.')">Generate ERP design</button>
+      </div>
+      <div class="plat reveal d1"><div class="blob"></div>
+        <h3>AWW Data Platform</h3>
+        <p>Single analytics and AI layer for all subsidiaries — real-time dashboards, predictive models, and management reporting.</p>
+        <button class="gen" onclick="generateContent('AWW Data Platform Design','Design the AWW Data Platform: ingestion, warehouse and semantic layer, cross-subsidiary intelligence use cases, AI models, governance, and rollout plan.')">Generate data platform design</button>
+      </div>
+      <div class="plat reveal d2"><div class="blob"></div>
+        <h3>AWW ESG Engine</h3>
+        <p>Real-time SDG impact scoring, ESG reporting automation, and green bond compliance tracking for investor dashboards.</p>
+        <button class="gen" onclick="generateContent('AWW ESG Engine Design','Design the AWW ESG Engine: SDG KPI taxonomy, data capture per subsidiary, scoring methodology, assurance workflow, and green bond compliance reporting.')">Generate ESG engine design</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATEMENT ===================== -->
+<section class="statement">
+  <div class="wrap">
+    <h2 class="reveal">Built for <span class="grad">every human need</span>.</h2>
+    <p class="lede reveal d1" style="margin-left:auto;margin-right:auto">From birth to legacy.</p>
+    <div class="hero-actions reveal d2">
+      <button class="btn grad-btn" onclick="openAssistant()">✦ Consult AWW AI</button>
+      <a class="btn ghost" href="#subsidiaries">Explore the verticals</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap fbar">
+    <div>Capital &amp; Foundation Holding Company · Building for every human need — from birth to legacy.</div>
+    <div>Aligned with all 17 UN SDGs · © 2026 AWW Corpora</div>
+  </div>
+</footer>
+
+<!-- ===================== FAB ===================== -->
+<button class="fab" onclick="openAssistant()">✦ Ask AWW AI</button>
+
+<!-- ===================== AI PANEL ===================== -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<aside class="output-panel" id="outputPanel">
+  <div class="panel-head">
+    <div>
+      <div id="panelTopic">AWW AI</div>
+      <h3 id="panelTitle">AWW AI Console</h3>
+    </div>
+    <button class="x" onclick="closePanel()" aria-label="Close">×</button>
+  </div>
+  <div class="panel-body" id="panelBody"><div id="panelContent"></div></div>
+  <div class="panel-foot">
+    <input id="followUpInput" placeholder="Ask a follow-up…" onkeydown="if(event.key==='Enter')sendFollowUp()">
+    <button class="btn sm" onclick="sendFollowUp()">Send</button>
+  </div>
+</aside>
+
+<!-- ===================== TEAM MODAL ===================== -->
+<div class="overlay" id="teamOverlay" onclick="closeTeamCard()"></div>
+<div class="modal" id="teamModal">
+  <button class="x" onclick="closeTeamCard()" aria-label="Close">×</button>
+  <div class="role" style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gray)">FOUNDER · AWW CORPORA</div>
+  <h2 style="font-size:clamp(28px,4vw,42px);margin:10px 0 20px">Axel Wahyu Wicaksono</h2>
+  <p style="color:var(--gray)">
+    Axel Wahyu Wicaksono is the founder and driving force behind AWW Corpora — a diversified
+    conglomerate engineered to fulfill every human need across nine strategic verticals, aligned
+    with all 17 UN Sustainable Development Goals.
+  </p>
+  <p style="color:var(--gray)">
+    With a vision spanning healthcare, education, food, property, energy, fintech, technology,
+    logistics, and consumer goods, Axel is building an integrated corporate universe designed for
+    long-term impact and generational value creation.
+  </p>
+  <div class="tags">
+    <span class="tag">SDG COMMITMENT</span>
+    <span class="tag">ALL 17 GOALS</span>
+    <span class="tag">IMPACT CAPITAL</span>
+    <span class="tag">INDONESIA</span>
+    <span class="tag">SOUTHEAST ASIA</span>
+  </div>
+  <div class="modal-actions">
+    <a class="btn sm grad-btn" href="/portfolio-axel">💼 View full professional portfolio →</a>
+  </div>
+</div>
+
+<!-- ===================== ARTICLE READER ===================== -->
+<div class="overlay" id="readerOverlay" onclick="closeReader()"></div>
+<div class="modal" id="readerModal">
+  <button class="x" onclick="closeReader()" aria-label="Close">×</button>
+  <div id="readerCover"></div>
+  <div id="readerCat"></div>
+  <div id="readerTitle"></div>
+  <div id="readerMeta"></div>
+  <div id="readerContent"></div>
+  <div class="modal-actions">
+    <button class="btn sm ghost" onclick="editFromReader()">Edit</button>
+    <button class="btn sm grad-btn" onclick="expandWithAI()">✦ Expand with AI</button>
+  </div>
+</div>
+
+<!-- ===================== ARTICLE EDITOR ===================== -->
+<div class="overlay" id="editorOverlay" onclick="closeEditor()"></div>
+<div class="modal" id="editorModal">
+  <button class="x" onclick="closeEditor()" aria-label="Close">×</button>
+  <h2 id="editorHeading" style="font-size:clamp(24px,3.4vw,34px);margin:0 0 26px">Write an Article</h2>
+  <div class="field"><label for="edTitle">Title</label><input id="edTitle" placeholder="Article title"></div>
+  <div class="field"><label for="edCat">Category</label><input id="edCat" placeholder="Insight"></div>
+  <div class="field"><label for="edCover">Cover image URL (optional)</label><input id="edCover" placeholder="https://…"></div>
+  <div class="field"><label for="edBody">Body</label><textarea id="edBody" placeholder="Write here…"></textarea></div>
+  <p class="hint">Tip: tekan “✦ Draft with AI” untuk membuat draft otomatis dari judul.</p>
+  <div class="modal-actions">
+    <button class="btn sm grad-btn" id="edAiBtn" onclick="aiDraftArticle()">✦ Draft with AI</button>
+    <button class="btn sm ghost" onclick="closeEditor()">Cancel</button>
+    <button class="btn sm ghost" id="edDelBtn" onclick="deleteCurrentArticle()" style="display:none">Delete</button>
+    <button class="btn sm" onclick="saveArticleFromEditor()">Publish</button>
+  </div>
+</div>
+
+<script>
+  let conversationHistory = [];
+  let currentTopic = '';
+
+  const SYSTEM_PROMPT = `You are the official AI consultant for AWW Corpora — a diversified conglomerate structured to fulfill every human need from birth to end of life, aligned with all 17 UN SDGs. AWW Corpora is the apex holding company with 9 subsidiaries:
+1. AWW Health — full lifecycle healthcare (SDG 3, 1, 10)
+2. AWW Education — early childhood to professional development (SDG 4, 10, 8)
+3. AWW Food & Agri — farm to consumer (SDG 2, 12, 13)
+4. AWW Property — housing and smart cities (SDG 11, 6, 9)
+5. AWW Energy — clean and renewable energy (SDG 7, 13)
+6. AWW FinTech — inclusive financial services (SDG 8, 10, 1)
+7. AWW Technology — AI and digital infrastructure (SDG 9, 17)
+8. AWW Logistics — supply chain and last-mile (SDG 9, 11, 12)
+9. AWW Consumer — daily essentials and retail (SDG 12, 3, 1)
+
+Three shared platforms: AWW ERP Core, AWW Data Platform, AWW ESG Engine.
+
+You generate detailed, professional business analysis, blueprints, and strategies for AWW Corpora. Your responses are comprehensive, specific, actionable, and formatted for clarity with headings, tables, and bullet points where appropriate. Write with the authority of a senior McKinsey consultant who also deeply understands impact investing and sustainable development. Always connect business strategy to SDG targets and investor value creation.
+
+Format your responses in clean HTML using <h2>, <h3>, <p>, <ul>, <li>, <strong>, and <table> tags. Make responses detailed and thorough — at least 600 words. Do not use markdown, only HTML tags.`;
+
+  async function generateContent(topic, prompt) {
+    currentTopic = topic;
+    conversationHistory = [{ role: 'user', content: prompt }];
+
+    document.getElementById('panelTitle').textContent = topic;
+    document.getElementById('panelTopic').textContent = topic.toUpperCase();
+    document.getElementById('panelContent').innerHTML = '<div class="thinking-dots"><span></span><span></span><span></span></div>';
+    document.getElementById('outputPanel').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+
+    await callAPI();
+  }
+
+  async function sendFollowUp() {
+    const input = document.getElementById('followUpInput');
+    const question = input.value.trim();
+    if (!question) return;
+    input.value = '';
+
+    conversationHistory.push({ role: 'user', content: question });
+    document.getElementById('panelContent').innerHTML += '<hr style="border:0;border-top:1px solid var(--line);margin:1.5rem 0"><div class="thinking-dots"><span></span><span></span><span></span></div>';
+    document.getElementById('panelBody').scrollTop = document.getElementById('panelBody').scrollHeight;
+
+    await callAPI();
+  }
+
+  async function callAPI() {
+    try {
+      const response = await fetch('/.netlify/functions/claude-proxy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 1000,
+          system: SYSTEM_PROMPT,
+          messages: conversationHistory
+        })
+      });
+
+      const data = await response.json();
+      const text = data.content?.map(b => b.text || '').join('') || 'No response received.';
+
+      conversationHistory.push({ role: 'assistant', content: text });
+
+      const dots = document.getElementById('panelContent').querySelector('.thinking-dots:last-child');
+      if (dots) dots.remove();
+
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = text;
+      document.getElementById('panelContent').appendChild(wrapper);
+
+      document.getElementById('panelBody').scrollTop = document.getElementById('panelBody').scrollHeight;
+
+    } catch (err) {
+      const dots = document.getElementById('panelContent').querySelector('.thinking-dots:last-child');
+      if (dots) dots.remove();
+      document.getElementById('panelContent').innerHTML += '<p style="color:#E24B4A">Error connecting to the AI service. Please try again.</p>';
+    }
+  }
+
+  function closePanel() {
+    document.getElementById('outputPanel').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  function openTeamCard() {
+    document.getElementById('teamModal').classList.add('open');
+    document.getElementById('teamOverlay').classList.add('show');
+  }
+
+  function closeTeamCard() {
+    document.getElementById('teamModal').classList.remove('open');
+    document.getElementById('teamOverlay').classList.remove('show');
+  }
+
+  /* ===================== AWW AI CONSOLE ===================== */
+  function openAssistant() {
+    currentTopic = 'AWW AI Console';
+    conversationHistory = [];
+    document.getElementById('panelTitle').textContent = 'AWW AI Console';
+    document.getElementById('panelTopic').textContent = 'ASK ANYTHING · ALL SECTIONS CONNECTED';
+    document.getElementById('panelContent').innerHTML =
+      '<p style="color:var(--gray)">Tanyakan apa saja tentang AWW Corpora — strategi holding, sembilan subsidiary, pemetaan SDG, jalur pendanaan, atau minta saya menyusun draft artikel. Setiap jawaban memakai konteks seluruh perusahaan.</p>' +
+      '<p style="color:var(--gray-light);font-size:0.82rem">Coba: <em>“Susun thesis investasi 1 paragraf untuk Series A”</em> atau <em>“Bandingkan AWW Health vs kompetitor regional.”</em></p>';
+    document.getElementById('outputPanel').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+    setTimeout(function(){ var i=document.getElementById('followUpInput'); if(i) i.focus(); }, 350);
+  }
+
+  async function awwFetchAI(messages, maxTokens) {
+    const response = await fetch('/.netlify/functions/claude-proxy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: maxTokens || 1200,
+        system: SYSTEM_PROMPT,
+        messages: messages
+      })
+    });
+    const data = await response.json();
+    return (data.content || []).map(function(b){ return b.text || ''; }).join('') || '';
+  }
+
+  /* ===================== PARTNER MARQUEE ===================== */
+  function buildMarquee() {
+    const rowA = ['Impact Ventures','UN Global Compact','Green Bond Alliance','Sovereign Capital','Sustainable Future Fund','Health Systems Group','EdTech Coalition','Clean Energy Partners'];
+    const rowB = ['Smart Cities Network','AgriTech Forum','Financial Inclusion Lab','Logistics Union','Carbon Markets Co.','Family Office Syndicate','Development Finance Inst.','Research University Net'];
+    function chips(list) {
+      return list.map(function(n){
+        return '<div class="partner-chip"><span class="dot">✦</span>' + n + '</div>';
+      }).join('');
+    }
+    const a = document.getElementById('mq1'); if (a) a.innerHTML = chips(rowA) + chips(rowA);
+    const b = document.getElementById('mq2'); if (b) b.innerHTML = chips(rowB) + chips(rowB);
+  }
+
+  /* ===================== ARTICLES ===================== */
+  const ART_KEY = 'aww_articles_v2';
+  let currentEditId = null;
+  let currentReadId = null;
+
+  function seedArticles() {
+    return [
+      {
+        id: 'a-thesis',
+        cat: 'Founder Letter',
+        title: 'Why the future belongs to lifecycle conglomerates',
+        cover: '',
+        date: '2026-06-01',
+        body: '<p>Every great company solves one problem. AWW Corpora is built on a different bet: that the highest-value position in any economy is to be the connective tissue across an entire human life.</p><h2>One customer, owned for a lifetime</h2><p>A child born into the AWW ecosystem can be delivered in an <strong>AWW Health</strong> facility, educated through <strong>AWW Education</strong>, banked by <strong>AWW FinTech</strong>, housed by <strong>AWW Property</strong>, and powered by <strong>AWW Energy</strong> — for seventy years. The lifetime value of that relationship is not a transaction. It is an annuity.</p><h2>Why investors should care</h2><p>Diversification is usually a discount. Here it is a moat: nine verticals sharing one capital base, one data platform, and one ESG engine compound faster than any of them could alone, while all 17 UN SDGs are wired into the operating model from day one.</p>'
+      },
+      {
+        id: 'a-sdg',
+        cat: 'Impact',
+        title: 'Turning 17 SDGs into a financeable balance sheet',
+        cover: '',
+        date: '2026-05-18',
+        body: '<p>Most companies treat the Sustainable Development Goals as a marketing layer. We treat them as collateral.</p><p>Through the <strong>AWW ESG Engine</strong>, every subsidiary reports three measurable KPIs per relevant SDG, scored quarterly. That data is what unlocks green bonds, sustainability-linked loans, and ESG-mandated institutional capital that most conglomerates cannot access.</p><h2>From narrative to instrument</h2><p>When impact is measured with the same rigor as revenue, it becomes a financing instrument. That is the quiet advantage behind the AWW capital strategy.</p>'
+      },
+      {
+        id: 'a-platform',
+        cat: 'Strategy',
+        title: 'The three platforms that make nine companies behave like one',
+        cover: '',
+        date: '2026-05-02',
+        body: '<p>Scale without integration is just a portfolio. AWW Corpora runs on three shared platforms — <strong>ERP Core</strong>, <strong>Data Platform</strong>, and <strong>ESG Engine</strong> — that let nine independent businesses transact, learn, and report as a single organism.</p><p>The result is cross-subsidiary intelligence: health data informing insurance, logistics informing retail, energy informing property. Each connection is a margin no standalone competitor can copy.</p>'
+      }
+    ];
+  }
+  function loadArticles() {
+    try { const r = localStorage.getItem(ART_KEY); if (r) return JSON.parse(r); } catch (e) {}
+    const s = seedArticles(); saveArticles(s); return s;
+  }
+  function saveArticles(a) { try { localStorage.setItem(ART_KEY, JSON.stringify(a)); } catch (e) {} }
+  let ARTICLES = loadArticles();
+
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function bodyToHtml(b) {
+    b = b || '';
+    if (/<[a-z][\s\S]*>/i.test(b)) return b;
+    return b.split(/\n\n+/).map(function(p){ return '<p>' + escapeHtml(p).replace(/\n/g,'<br>') + '</p>'; }).join('');
+  }
+  function excerpt(b, n) {
+    const txt = bodyToHtml(b).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+    return txt.length > (n||120) ? txt.slice(0, n||120).trim() + '…' : txt;
+  }
+  function fmtDate(d) {
+    try { return new Date(d).toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'}); }
+    catch (e) { return d || ''; }
+  }
+
+  function renderArticles() {
+    const grid = document.getElementById('articlesGrid');
+    if (!grid) return;
+    if (!ARTICLES.length) {
+      grid.innerHTML = '<div class="article-empty">Belum ada artikel. Klik “＋ Write Article” untuk menerbitkan yang pertama.</div>';
+      return;
+    }
+    grid.innerHTML = ARTICLES.map(function(a){
+      const cover = a.cover
+        ? '<div class="article-cover"><img src="' + escapeHtml(a.cover) + '" alt=""></div>'
+        : '<div class="article-cover noimg"></div>';
+      return '<article class="article-card" onclick="openArticle(\'' + a.id + '\')">' + cover +
+        '<div class="article-body">' +
+          '<div class="article-cat">' + escapeHtml(a.cat || 'Insight') + '</div>' +
+          '<div class="article-title">' + escapeHtml(a.title) + '</div>' +
+          '<div class="article-excerpt">' + escapeHtml(excerpt(a.body)) + '</div>' +
+          '<div class="article-meta">' + fmtDate(a.date) + '</div>' +
+        '</div></article>';
+    }).join('');
+  }
+
+  function openArticle(id) {
+    const a = ARTICLES.find(function(x){ return x.id === id; });
+    if (!a) return;
+    currentReadId = id;
+    document.getElementById('readerCover').innerHTML = a.cover
+      ? '<div class="reader-cover"><img src="' + escapeHtml(a.cover) + '" alt=""></div>'
+      : '<div class="reader-cover"></div>';
+    document.getElementById('readerCat').textContent = a.cat || 'Insight';
+    document.getElementById('readerTitle').textContent = a.title;
+    document.getElementById('readerMeta').textContent = 'AWW Corpora · ' + fmtDate(a.date);
+    document.getElementById('readerContent').innerHTML = bodyToHtml(a.body);
+    document.getElementById('readerModal').classList.add('open');
+    document.getElementById('readerOverlay').classList.add('show');
+  }
+  function closeReader() {
+    document.getElementById('readerModal').classList.remove('open');
+    document.getElementById('readerOverlay').classList.remove('show');
+  }
+
+  function openEditor(id) {
+    currentEditId = id;
+    const a = id ? ARTICLES.find(function(x){ return x.id === id; }) : null;
+    document.getElementById('editorHeading').textContent = a ? 'Edit Article' : 'Write an Article';
+    document.getElementById('edTitle').value = a ? a.title : '';
+    document.getElementById('edCat').value = a ? (a.cat || '') : '';
+    document.getElementById('edCover').value = a ? (a.cover || '') : '';
+    document.getElementById('edBody').value = a ? a.body : '';
+    document.getElementById('edDelBtn').style.display = a ? 'inline-flex' : 'none';
+    document.getElementById('editorModal').classList.add('open');
+    document.getElementById('editorOverlay').classList.add('show');
+  }
+  function closeEditor() {
+    document.getElementById('editorModal').classList.remove('open');
+    document.getElementById('editorOverlay').classList.remove('show');
+  }
+  function editFromReader() { closeReader(); openEditor(currentReadId); }
+
+  function saveArticleFromEditor() {
+    const title = document.getElementById('edTitle').value.trim();
+    const body = document.getElementById('edBody').value.trim();
+    if (!title) { alert('Judul artikel wajib diisi.'); return; }
+    if (!body) { alert('Isi artikel masih kosong.'); return; }
+    const cat = document.getElementById('edCat').value.trim() || 'Insight';
+    const cover = document.getElementById('edCover').value.trim();
+    if (currentEditId) {
+      const a = ARTICLES.find(function(x){ return x.id === currentEditId; });
+      if (a) { a.title = title; a.cat = cat; a.cover = cover; a.body = body; }
+    } else {
+      ARTICLES.unshift({ id: 'a-' + Date.now(), cat: cat, title: title, cover: cover, date: new Date().toISOString().slice(0,10), body: body });
+    }
+    saveArticles(ARTICLES);
+    renderArticles();
+    closeEditor();
+  }
+  function deleteCurrentArticle() {
+    if (!currentEditId) return;
+    if (!confirm('Hapus artikel ini?')) return;
+    ARTICLES = ARTICLES.filter(function(x){ return x.id !== currentEditId; });
+    saveArticles(ARTICLES);
+    renderArticles();
+    closeEditor();
+  }
+
+  async function aiDraftArticle() {
+    const topic = document.getElementById('edTitle').value.trim();
+    if (!topic) { alert('Isi judul dulu sebagai topik, lalu klik Draft with AI.'); return; }
+    const btn = document.getElementById('edAiBtn');
+    const old = btn.textContent; btn.textContent = '✦ Drafting…'; btn.disabled = true;
+    try {
+      const prompt = 'Write a polished, opinionated thought-leadership article for AWW Corpora titled "' + topic + '". 500-650 words. Use HTML tags only (<h2>, <p>, <strong>, <ul>, <li>) — no markdown, no outer wrapper, start directly with a <p>. Voice: a visionary founder building a lifecycle conglomerate aligned with the UN SDGs.';
+      const text = await awwFetchAI([{ role: 'user', content: prompt }], 1400);
+      if (text) {
+        document.getElementById('edBody').value = text.trim();
+        if (!document.getElementById('edCat').value.trim()) document.getElementById('edCat').value = 'AI Draft';
+      } else { alert('Tidak ada respons dari AI.'); }
+    } catch (e) {
+      alert('AI console aktif setelah website dideploy ke Netlify dengan API key. Untuk sekarang, tulis manual ya.');
+    } finally { btn.textContent = old; btn.disabled = false; }
+  }
+
+  async function expandWithAI() {
+    const a = ARTICLES.find(function(x){ return x.id === currentReadId; });
+    if (!a) return;
+    const c = document.getElementById('readerContent');
+    c.innerHTML += '<div class="thinking-dots"><span></span><span></span><span></span></div>';
+    try {
+      const prompt = 'Here is a draft article titled "' + a.title + '":\n\n' + a.body + '\n\nExpand and enrich it with one or two additional strong sections (data points, an analogy, a concrete example). Return ONLY new HTML sections (<h2>/<p>/<strong>), no markdown, no preamble.';
+      const text = await awwFetchAI([{ role: 'user', content: prompt }], 1200);
+      const dots = c.querySelector('.thinking-dots'); if (dots) dots.remove();
+      if (text) { a.body = a.body + text; saveArticles(ARTICLES); c.innerHTML = bodyToHtml(a.body); renderArticles(); }
+    } catch (e) {
+      const dots = c.querySelector('.thinking-dots'); if (dots) dots.remove();
+      c.innerHTML += '<p style="color:#E5755F">AI console aktif setelah deploy ke Netlify dengan API key.</p>';
+    }
+  }
+
+  /* ===================== MOBILE MENU ===================== */
+  function toggleMobileMenu() {
+    const nl = document.getElementById('navLinks');
+    nl.classList.toggle('mobile-open');
+    document.body.classList.toggle('menu-open', nl.classList.contains('mobile-open'));
+  }
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.getElementById('navLinks').classList.remove('mobile-open');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  /* ===================== ESC to close ===================== */
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+      closeReader(); closeEditor();
+      if (typeof closePanel === 'function') closePanel();
+      if (typeof closeTeamCard === 'function') closeTeamCard();
+    }
+  });
+
+  /* ===================== ANIMASI MASUK ===================== */
+  if (!('IntersectionObserver' in window)) {
+    /* Browser lawas: tampilkan semuanya tanpa animasi */
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    document.querySelectorAll('.sub-card,.sdg-pill,.funding-cell,.corpora-cell').forEach(function(el){
+      el.classList.add('reveal','in');
+    });
+  }
+  const IOimpl = window.IntersectionObserver || function(){ return { observe:function(){}, unobserve:function(){} }; };
+  const io = new IOimpl(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* Kartu-kartu: reveal berurutan */
+  document.querySelectorAll('.sub-card, .sdg-pill, .funding-cell, .corpora-cell').forEach(function(el, i){
+    el.classList.add('reveal');
+    el.style.transitionDelay = ((i % 6) * 0.06) + 's';
+    io.observe(el);
+  });
+
+  /* ===================== PANEL STICKY MENGIKUTI SCROLL ===================== */
+  const panels = document.querySelectorAll('.panel[data-panel]');
+  const stepIO = new IOimpl(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        const i = e.target.getAttribute('data-step');
+        panels.forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-panel') === i); });
+      }
+    });
+  }, { threshold: .5 });
+  document.querySelectorAll('.corpora-cell[data-step]').forEach(function(el){ stepIO.observe(el); });
+
+  /* ===================== NAV + PARALLAX ===================== */
+  const navEl = document.getElementById('nav');
+  const auraEl = document.querySelector('.aura-wrap');
+  let ticking = false;
+  function paint(){
+    navEl.classList.toggle('stuck', window.pageYOffset > 8);
+    if (auraEl) auraEl.style.transform = 'translate3d(0,' + (window.pageYOffset * 0.16) + 'px,0)';
+    ticking = false;
+  }
+  function onScroll(){
+    if (!ticking) { ticking = true; (window.requestAnimationFrame || setTimeout)(paint); }
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ===================== INIT ===================== */
+  buildMarquee();
+  renderArticles();
+</script>
+</body>
+</html>

@@ -1,4 +1,6 @@
 # Netlify configuration for AWW Corpora
+# © 2026 Axel Wahyu Wicaksono / AWW Corpora. All Rights Reserved.
+
 [build]
   publish = "."                  # index.html lives in the repo root
   functions = "netlify/functions" # serverless functions folder
@@ -6,9 +8,68 @@
 [functions]
   node_bundler = "esbuild"
 
+
+# ---------------------------------------------------------------------------
+# Header keamanan untuk SEMUA halaman
+# ---------------------------------------------------------------------------
 [[headers]]
   for = "/*"
   [headers.values]
+    # Situs lain tidak boleh menyematkan halaman Anda di dalam iframe mereka
+    # (mencegah orang membingkai ulang situs Anda seolah-olah miliknya).
     X-Frame-Options = "DENY"
+
+    # Browser tidak boleh menebak-nebak tipe file.
     X-Content-Type-Options = "nosniff"
+
+    # Alamat halaman Anda tidak bocor lengkap ke situs tujuan saat orang klik keluar.
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Paksa HTTPS selama 2 tahun, termasuk semua subdomain.
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+    # Matikan akses fitur perangkat yang memang tidak dipakai situs ini.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
+    # PENTING — Content Security Policy.
+    # Situs ini 100% mandiri: semua CSS & JS inline, tidak ada font/script/gambar
+    # dari luar. CSP di bawah mengunci itu, sehingga script asing tidak bisa
+    # disuntikkan ke halaman Anda.
+    #
+    # ⚠ KALAU SUATU SAAT ANDA MENAMBAH RESOURCE DARI LUAR
+    #   (Google Fonts, Google Analytics, embed YouTube, gambar dari CDN),
+    #   resource itu akan DIBLOKIR sampai Anda menambahkan domainnya di sini.
+    #   Contoh menambah Google Fonts:
+    #     style-src  ... https://fonts.googleapis.com;
+    #     font-src   ... https://fonts.gstatic.com;
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; upgrade-insecure-requests"
+
+
+# ---------------------------------------------------------------------------
+# CV — jangan diindeks & jangan di-cache mesin pencari
+# ---------------------------------------------------------------------------
+# File tetap bisa diunduh lewat tombol di situs Anda, tapi tidak akan muncul
+# sebagai hasil pencarian Google dan tidak disimpan di cache mereka.
+[[headers]]
+  for = "/assets/*.pdf"
+  [headers.values]
+    X-Robots-Tag = "noindex, noarchive, nosnippet, noimageindex"
+    Content-Disposition = "inline"
+
+
+# ---------------------------------------------------------------------------
+# Foto & aset — cache lama supaya situs cepat
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+
+# ---------------------------------------------------------------------------
+# Halaman HTML — selalu ambil versi terbaru setelah deploy
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

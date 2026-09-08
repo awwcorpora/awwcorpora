@@ -1,0 +1,69 @@
+# AWW Corpora — awwcorpora.web.id
+# © 2026 Axel Wahyu Wicaksono. All Rights Reserved.
+# Konten situs ini berhak cipta. Lihat /LICENSE.
+
+# --- Mesin pencari normal: dipersilakan, supaya situs bisa ditemukan ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# --- Crawler pengumpul data untuk melatih AI: tidak diizinkan ---
+User-agent: GPTBot
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+# --- Semua bot lain: boleh, kecuali berkas pribadi ---
+User-agent: *
+Allow: /
+Disallow: /assets/*.pdf$
+
+Sitemap: https://awwcorpora.web.id/sitemap.xml
