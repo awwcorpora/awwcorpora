@@ -239,6 +239,31 @@ section{position:relative}
 }
 .sub-card p{margin:0;color:var(--gray);font-size:14.5px;flex:1}
 .sdg-tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gray-light);margin-top:14px}
+
+/* Status tiap vertical — jujur soal apa yang sudah ada dan belum */
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.card-top .ico{margin-bottom:0}
+.status{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  padding:5px 10px;border-radius:999px;white-space:nowrap;flex:none;
+  border:1px solid var(--line);color:var(--gray);background:var(--bg-alt);
+}
+.status.live{border-color:rgba(27,127,90,.35);color:#1B7F5A;background:rgba(27,127,90,.09)}
+.status.setup{border-color:rgba(123,92,255,.4);color:var(--g2);background:rgba(123,92,255,.09)}
+.legend{
+  display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:34px;
+  padding-top:20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--gray);
+}
+.legend .k{display:inline-flex;align-items:center;gap:8px}
+.legend .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--gray-light)}
+.legend .dot.live{background:#1B7F5A}
+.legend .dot.setup{background:var(--g2)}
+.roadmap-note{
+  margin-top:26px;padding:18px 22px;border-radius:16px;
+  background:var(--bg-alt);border:1px solid var(--line);
+  font-size:14.5px;color:var(--gray);max-width:62ch;
+}
 @media(max-width:900px){.sub-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.sub-grid{grid-template-columns:1fr}}
 
@@ -520,6 +545,7 @@ button,input,textarea{-webkit-appearance:none;appearance:none}
   <div class="wrap">
     <a class="brand" href="#top"><span class="mark"></span>AWW Corpora</a>
     <ul class="nav-links" id="navLinks">
+      <li><a href="/services">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#subsidiaries">Universe</a></li>
       <li><a href="#sdg">SDG</a></li>
@@ -550,10 +576,10 @@ button,input,textarea{-webkit-appearance:none;appearance:none}
       <button class="btn ghost" onclick="openAssistant()">✦ Consult AWW AI</button>
     </div>
     <div class="stats reveal d4">
-      <div><b>9</b><span>VERTICALS</span></div>
-      <div><b>17</b><span>UN SDGS</span></div>
-      <div><b>3</b><span>PLATFORMS</span></div>
-      <div><b>1</b><span>UNIVERSE</span></div>
+      <div><b>9</b><span>VERTICALS ON THE ROADMAP</span></div>
+      <div><b>17</b><span>UN SDGS TARGETED</span></div>
+      <div><b>3</b><span>SHARED PLATFORMS DESIGNED</span></div>
+      <div><b>1</b><span>ENTITY BEING ESTABLISHED</span></div>
     </div>
   </div>
 </header>
@@ -571,9 +597,10 @@ button,input,textarea{-webkit-appearance:none;appearance:none}
     <p class="eyebrow reveal">About the holding company</p>
     <h2 class="reveal d1">The apex of a<br><span class="grad">corporate universe</span></h2>
     <p class="lede reveal d2">
-      AWW Corpora is the capital foundation and strategic parent of all subsidiary companies.
-      It deploys equity, governs ESG compliance, and presents a unified investment thesis to
-      global investors — from impact VCs to public markets.
+      AWW Corpora is being built as the capital foundation for a group of independently founded
+      companies. The plan is to deploy equity, govern ESG compliance, and present a unified
+      investment thesis — from impact VCs through to public markets. Below is the roadmap, and
+      exactly where each vertical stands today.
     </p>
 
     <div class="story-inner">
@@ -602,22 +629,22 @@ button,input,textarea{-webkit-appearance:none;appearance:none}
         <div class="corpora-cell" data-step="0">
           <div class="k">MISSION</div>
           <h3>Human lifecycle coverage</h3>
-          <p>Every product and service a human needs, from the moment of birth to end of life — owned and operated under one conglomerate.</p>
+          <p>The long-term goal: every product and service a human needs, from the moment of birth to end of life, operated under one group.</p>
         </div>
         <div class="corpora-cell" data-step="1">
           <div class="k">STRUCTURE</div>
           <h3>Holding company + 9 subsidiaries</h3>
-          <p>AWW Corpora holds equity in each subsidiary, provides shared capital, and maintains consolidated financial and ESG reporting.</p>
+          <p>As each vertical is founded, AWW Corpora will hold equity in it, provide shared capital, and maintain consolidated financial and ESG reporting.</p>
         </div>
         <div class="corpora-cell" data-step="2">
           <div class="k">SDG ALIGNMENT</div>
           <h3>All 17 UN SDGs covered</h3>
-          <p>Each subsidiary is mapped to specific SDG targets, enabling green bond financing, impact investment, and ESG-mandated institutional capital.</p>
+          <p>Each vertical is mapped to specific SDG targets at founding — the basis for green bond financing, impact investment, and ESG-mandated institutional capital later on.</p>
         </div>
         <div class="corpora-cell" data-step="3">
           <div class="k">INTEGRATION</div>
           <h3>Unified ERP + ESG Engine</h3>
-          <p>A single data platform connects all subsidiaries — integrated transactions, consolidated P&amp;L reporting, and real-time SDG impact scoring.</p>
+          <p>One data platform is designed to connect every subsidiary — integrated transactions, consolidated P&amp;L reporting, and SDG impact scoring. Built incrementally, starting with the first operating entity.</p>
           <button class="gen" onclick="generateContent('Full Corpora Report','Generate a comprehensive corporate report for AWW Corpora covering holding structure, the nine subsidiaries, SDG alignment, integration architecture, and the investment thesis.')">Generate full corpora report</button>
         </div>
       </div>
@@ -631,74 +658,88 @@ button,input,textarea{-webkit-appearance:none;appearance:none}
     <p class="eyebrow reveal">9 business verticals</p>
     <h2 class="reveal d1">The corporate universe</h2>
     <p class="lede reveal d2">
-      Nine subsidiaries spanning every critical domain of human need. Each is independently scalable
-      and investable while sharing capital, data, and brand equity through AWW Corpora.
+      Nine verticals spanning every critical domain of human need — each designed to be independently
+      scalable and investable while sharing capital, data, and brand equity through AWW Corpora.
+      Every card below carries its real status today.
     </p>
 
     <div class="sub-grid">
       <div class="sub-card">
-        <div class="ico">⚕</div>
+        <div class="card-top"><div class="ico">⚕</div><span class="status">Planned</span></div>
         <h3>AWW Health</h3>
         <p>Full-spectrum healthcare from birth to elderly care — clinics, hospitals, digital health, pharmacy.</p>
         <div class="sdg-tag">SDG 3 · 1 · 10</div>
         <button class="gen" onclick="generateContent('AWW Health Blueprint','Generate a detailed business blueprint for AWW Health — market, service lines, unit economics, SDG 3/1/10 KPIs, and a 5-year scaling roadmap.')">Generate blueprint</button>
       </div>
       <div class="sub-card">
-        <div class="ico">🎓</div>
+        <div class="card-top"><div class="ico">🎓</div><span class="status">Planned</span></div>
         <h3>AWW Education</h3>
         <p>Early childhood through professional development — schools, universities, EdTech platforms.</p>
         <div class="sdg-tag">SDG 4 · 10 · 8</div>
         <button class="gen" onclick="generateContent('AWW Education Blueprint','Generate a detailed business blueprint for AWW Education — segments, delivery model, unit economics, SDG 4/10/8 KPIs, and a 5-year scaling roadmap.')">Generate blueprint</button>
       </div>
       <div class="sub-card">
-        <div class="ico">🌾</div>
+        <div class="card-top"><div class="ico">🌾</div><span class="status">Planned</span></div>
         <h3>AWW Food &amp; Agri</h3>
         <p>Farm to consumer — sustainable agriculture, food processing, distribution and retail.</p>
         <div class="sdg-tag">SDG 2 · 12 · 13</div>
         <button class="gen" onclick="generateContent('AWW Food &amp; Agri Blueprint','Generate a detailed business blueprint for AWW Food &amp; Agri — value chain, sourcing, margins, SDG 2/12/13 KPIs, and a 5-year scaling roadmap.')">Generate blueprint</button>
       </div>
       <div class="sub-card">
-        <div class="ico">🏙</div>
+        <div class="card-top"><div class="ico">🏙</div><span class="status">Planned</span></div>
         <h3>AWW Property</h3>
         <p>Housing, smart cities, and sustainable infrastructure — development, management, PropTech.</p>
         <div class="sdg-tag">SDG 11 · 6 · 9</div>
         <button class="gen" onclick="generateContent('AWW Property Blueprint','Generate a detailed business blueprint for AWW Property — development pipeline, capital structure, PropTech layer, SDG 11/6/9 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
       </div>
       <div class="sub-card">
-        <div class="ico">⚡</div>
+        <div class="card-top"><div class="ico">⚡</div><span class="status">Planned</span></div>
         <h3>AWW Energy</h3>
         <p>Clean and renewable energy — solar, wind, storage, distribution and energy services.</p>
         <div class="sdg-tag">SDG 7 · 13 · 9</div>
         <button class="gen" onclick="generateContent('AWW Energy Blueprint','Generate a detailed business blueprint for AWW Energy — generation mix, PPA strategy, project finance, SDG 7/13/9 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
       </div>
       <div class="sub-card">
-        <div class="ico">💳</div>
+        <div class="card-top"><div class="ico">💳</div><span class="status">Planned</span></div>
         <h3>AWW FinTech</h3>
         <p>Inclusive financial services — banking, insurance, lending, payments and wealth management.</p>
         <div class="sdg-tag">SDG 8 · 10 · 1</div>
         <button class="gen" onclick="generateContent('AWW FinTech Blueprint','Generate a detailed business blueprint for AWW FinTech — product stack, licensing, risk model, SDG 8/10/1 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
       </div>
       <div class="sub-card">
-        <div class="ico">💻</div>
+        <div class="card-top"><div class="ico">💻</div><span class="status">Planned</span></div>
         <h3>AWW Technology</h3>
         <p>AI, data infrastructure, cloud platforms, and digital transformation services.</p>
         <div class="sdg-tag">SDG 9 · 17 · 4</div>
         <button class="gen" onclick="generateContent('AWW Technology Blueprint','Generate a detailed business blueprint for AWW Technology — platform architecture, internal vs external revenue, SDG 9/17/4 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
       </div>
       <div class="sub-card">
-        <div class="ico">🚚</div>
+        <div class="card-top"><div class="ico">🚚</div><span class="status">Planned</span></div>
         <h3>AWW Logistics</h3>
         <p>End-to-end supply chain — last-mile delivery, warehousing, cold chain, and fleet management.</p>
         <div class="sdg-tag">SDG 9 · 11 · 12</div>
         <button class="gen" onclick="generateContent('AWW Logistics Blueprint','Generate a detailed business blueprint for AWW Logistics — network design, cold chain, fleet economics, SDG 9/11/12 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
       </div>
       <div class="sub-card">
-        <div class="ico">🛒</div>
+        <div class="card-top"><div class="ico">🛒</div><span class="status">Planned</span></div>
         <h3>AWW Consumer</h3>
         <p>Daily essentials — personal care, household goods, wellness products, and retail channels.</p>
         <div class="sdg-tag">SDG 12 · 3 · 1</div>
         <button class="gen" onclick="generateContent('AWW Consumer Blueprint','Generate a detailed business blueprint for AWW Consumer — brand portfolio, channel strategy, margins, SDG 12/3/1 KPIs, and a 5-year roadmap.')">Generate blueprint</button>
       </div>
+    </div>
+
+    <div class="legend reveal">
+      <span class="k"><span class="dot live"></span>Operating — trading and filing</span>
+      <span class="k"><span class="dot setup"></span>In establishment — registration underway</span>
+      <span class="k"><span class="dot"></span>Planned — on the roadmap, not yet founded</span>
+    </div>
+
+    <div class="roadmap-note reveal d1">
+      AWW Corpora is at the start of this roadmap. The holding entity is being established, and the
+      first operating company is the priority for 2026 — a finance, accounting and tax practice
+      serving founders and companies entering the Indonesian market.
+      <a href="/services" style="color:var(--g2);font-weight:600;white-space:nowrap">See what is available today →</a>
     </div>
   </div>
 </section>
@@ -744,7 +785,8 @@ button,input,textarea{-webkit-appearance:none;appearance:none}
     <p class="lede reveal d2">
       AWW Corpora is structured for a staged funding journey — attracting impact capital early,
       scaling with private equity, leveraging green bonds tied to SDG performance, and ultimately
-      listing on public markets.
+      listing on public markets. The group is currently ahead of Phase 1: building its first
+      operating entity and revenue before raising anything.
     </p>
 
     <div class="phase-grid">
@@ -826,8 +868,9 @@ button,input,textarea{-webkit-appearance:none;appearance:none}
     <p class="eyebrow reveal">Technology backbone</p>
     <h2 class="reveal d1">Integrated systems<br>across the universe</h2>
     <p class="lede reveal d2">
-      Three shared platforms connect all nine subsidiaries into a single operating system — enabling
-      consolidated reporting, cross-subsidiary data intelligence, and real-time SDG impact tracking.
+      Three shared platforms are designed to connect every subsidiary into a single operating system —
+      consolidated reporting, cross-subsidiary data intelligence, and SDG impact tracking. They are
+      being built one at a time, alongside the first operating entity.
     </p>
 
     <div class="plat-grid">

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<!--!
+  ============================================================================
+  © 2026 Axel Wahyu Wicaksono / AWW Corpora. All Rights Reserved.
+  awwcorpora.web.id
+
+  This source code and its design are the exclusive property of AWW Corpora
+  and are protected by copyright law. No part of this file — including its
+  markup, styles, scripts, layout, or written content — may be copied,
+  reproduced, republished, adapted, or used to create derivative works,
+  in whole or in part, without prior written permission.
+
+  Unauthorised use will be pursued, including by takedown notice to the
+  offending party's host, registrar and search engines.
+  Enquiries: axelwahyu10@gmail.com
+  ============================================================================
+-->
+
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  PENTING — BACA SEBELUM DEPLOY                                           ║
+  ║                                                                          ║
+  ║  Semua HARGA di halaman ini masih ANGKA CONTOH. Cari "TARIF" di file      ║
+  ║  ini untuk menemukan semuanya, lalu ganti dengan tarif Anda sendiri.      ║
+  ║  Anda jauh lebih tahu pasarnya daripada angka-angka ini.                  ║
+  ║                                                                          ║
+  ║  FORMULIR: memakai Netlify Forms. Setelah deploy, buka                    ║
+  ║  app.netlify.com → Site configuration → Forms, pastikan aktif.            ║
+  ║  Kiriman masuk ke tab "Forms", dan bisa diteruskan ke email Anda.         ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Services — Finance, Accounting &amp; Tax | AWW Corpora</title>
+<meta name="description" content="Company establishment, monthly bookkeeping, tax compliance and market-entry support for founders and companies operating in Indonesia. Delivered by a senior accounting specialist.">
+<meta name="theme-color" content="#ffffff">
+<meta name="author" content="Axel Wahyu Wicaksono">
+<meta name="copyright" content="© 2026 AWW Corpora. All Rights Reserved.">
+<meta name="robots" content="index, follow, noarchive, max-image-preview:large">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232ad0ff'/%3E%3Cstop offset='.5' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%23ff4d8d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3C/svg%3E">
+
+<style>
+/* ============================================================
+   Services — sistem desain yang sama dengan index.html
+   ============================================================ */
+:root{
+  --g1:#2ad0ff; --g2:#7b5cff; --g3:#ff4d8d;
+  --bg:#ffffff; --bg-alt:#f5f5f7; --ink:#1d1d1f;
+  --gray:#6e6e73; --gray-light:#98989d;
+  --line:rgba(0,0,0,.09); --card:#ffffff;
+  --max:1120px; --pad:24px; --r:22px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:70px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+  font-size:17px;line-height:1.5;letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.menu-open{overflow:hidden}
+h1,h2,h3,p,li,.btn{overflow-wrap:break-word}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.wrap{
+  max-width:var(--max);margin-left:auto;margin-right:auto;
+  padding-left:calc(var(--pad) + env(safe-area-inset-left));
+  padding-right:calc(var(--pad) + env(safe-area-inset-right));
+}
+
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gray);margin:0 0 18px;font-family:var(--mono)}
+h1{font-size:clamp(40px,7vw,80px);line-height:1;letter-spacing:-.04em;font-weight:700;margin:0}
+h2{font-size:clamp(30px,5vw,56px);line-height:1.05;letter-spacing:-.032em;font-weight:700;margin:0 0 20px}
+h3{font-size:clamp(19px,2.2vw,25px);line-height:1.22;letter-spacing:-.02em;font-weight:600;margin:0 0 10px}
+.lede{font-size:clamp(16.5px,1.9vw,21px);line-height:1.55;color:var(--gray);max-width:60ch;
+  margin:22px 0 0;letter-spacing:-.015em}
+
+.grad{
+  background:linear-gradient(100deg,var(--g1),var(--g2) 45%,var(--g3) 78%,var(--g1));
+  background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:flow 9s var(--ease) infinite alternate;
+}
+@keyframes flow{from{background-position:0% 50%}to{background-position:100% 50%}}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;justify-content:center;
+  padding:12px 24px;border-radius:999px;font-size:15px;font-weight:500;
+  background:var(--ink);color:#fff;border:1px solid var(--ink);cursor:pointer;
+  transition:transform .3s var(--ease);
+}
+.btn:hover{transform:scale(1.04)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.sm{padding:8px 17px;font-size:13px}
+.btn.grad-btn{
+  background:linear-gradient(100deg,var(--g1),var(--g2) 50%,var(--g3));
+  background-size:200% 100%;border:0;color:#fff;animation:flow 8s var(--ease) infinite alternate;
+}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:-webkit-sticky;position:sticky;top:0;z-index:60;
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+  background:rgba(255,255,255,.72);
+  border-bottom:1px solid transparent;transition:border-color .3s;
+}
+.nav.stuck{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:26px;height:52px}
+.brand{font-weight:600;font-size:16px;letter-spacing:-.03em;display:flex;align-items:center;gap:9px}
+.mark{width:22px;height:22px;border-radius:7px;flex:none;
+  background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3));background-size:200% 200%;
+  animation:flow 7s var(--ease) infinite alternate}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:13.5px;color:var(--gray)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover,.nav-links a.on{color:var(--ink)}
+.nav .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:6px;color:var(--ink)}
+.burger span{display:block;width:18px;height:1.5px;background:currentColor;margin:4px 0;border-radius:2px}
+@media(max-width:900px){
+  .burger{display:block}
+  .nav .right .btn{display:none}
+  .nav-links{
+    position:fixed;top:52px;right:0;left:0;bottom:auto;background:rgba(255,255,255,.97);
+    -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+    flex-direction:column;gap:0;padding:8px 24px 24px;
+    border-bottom:1px solid var(--line);display:none;font-size:17px;
+  }
+  .nav-links.mobile-open{display:flex}
+  .nav-links li{padding:14px 0;border-bottom:1px solid var(--line)}
+}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:88px 0 60px;overflow:hidden}
+.aura-wrap{position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;pointer-events:none;overflow:hidden}
+.aura{
+  position:absolute;left:50%;top:28%;
+  width:min(130vw,1100px);height:min(130vw,1100px);
+  margin-left:calc(min(130vw,1100px) / -2);margin-top:calc(min(130vw,1100px) / -2);
+  background:
+    radial-gradient(closest-side,rgba(42,208,255,.5),transparent 70%) 24% 32%/60% 60% no-repeat,
+    radial-gradient(closest-side,rgba(123,92,255,.44),transparent 70%) 72% 26%/62% 62% no-repeat,
+    radial-gradient(closest-side,rgba(255,77,141,.38),transparent 70%) 48% 74%/64% 64% no-repeat;
+  filter:blur(64px);opacity:.42;
+  animation:drift 18s ease-in-out infinite alternate;
+}
+@keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.13)}}
+.hero .wrap{position:relative;z-index:2}
+.hero-actions{display:flex;gap:11px;margin-top:32px;flex-wrap:wrap}
+
+/* ---------- Section ---------- */
+section{position:relative}
+.sec{padding:104px 0}
+.sec.alt{background:var(--bg-alt)}
+@media(max-width:700px){.sec{padding:74px 0}}
+
+/* ---------- Untuk siapa ---------- */
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.who-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.who-card:hover{transform:translateY(-4px);box-shadow:0 24px 54px -30px rgba(0,0,0,.4)}
+.who-card .ico{
+  width:44px;height:44px;border-radius:13px;margin-bottom:16px;display:grid;place-items:center;
+  font-size:19px;
+  background:linear-gradient(140deg,var(--g1),var(--g2),var(--g3));background-size:200% 200%;
+  animation:flow 7s var(--ease) infinite alternate;
+  box-shadow:0 10px 22px -14px rgba(123,92,255,.9);
+}
+.who-card p{margin:0;color:var(--gray);font-size:14.8px}
+@media(max-width:900px){.who{grid-template-columns:1fr}}
+
+/* ---------- Layanan ---------- */
+.svcs{display:grid;gap:16px;margin-top:52px}
+.svc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:34px;display:grid;grid-template-columns:1fr 260px;gap:36px;align-items:start;
+}
+.svc-body p{margin:0 0 16px;color:var(--gray);font-size:15.2px;max-width:56ch}
+.svc-body ul{margin:0;padding-left:19px;display:grid;gap:7px}
+.svc-body li{color:var(--gray);font-size:14.8px;line-height:1.5}
+.svc-body li::marker{color:var(--g2)}
+.svc-price{
+  background:var(--bg-alt);border:1px solid var(--line);border-radius:16px;padding:22px;
+  display:grid;gap:6px;align-content:start;
+}
+.svc-price .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--gray-light)}
+.svc-price .amt{font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1.1;
+  font-variant-numeric:tabular-nums}
+.svc-price .unit{font-size:13px;color:var(--gray)}
+.svc-price .note{font-size:12.5px;color:var(--gray-light);margin-top:8px;line-height:1.45}
+@media(max-width:820px){.svc{grid-template-columns:1fr;gap:24px;padding:28px}}
+
+/* ---------- Cara kerja ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.step{background:var(--card);padding:30px}
+.step .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--g2);margin-bottom:12px}
+.step p{margin:0;color:var(--gray);font-size:14.8px}
+@media(max-width:820px){.steps{grid-template-columns:1fr}}
+
+/* ---------- Siapa yang mengerjakan ---------- */
+.by{
+  margin-top:52px;background:var(--card);border:1px solid var(--line);border-radius:28px;
+  padding:40px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;
+}
+.by .avatar{
+  width:96px;height:96px;border-radius:28px;overflow:hidden;flex:none;
+  border:1px solid var(--line);background:var(--bg-alt);
+}
+.by .avatar img{width:100%;height:100%;object-fit:cover}
+.by p{margin:10px 0 0;color:var(--gray);max-width:56ch;font-size:15.2px}
+.creds{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.cred{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:6px 12px;
+  border-radius:999px;border:1px solid var(--line);color:var(--gray)}
+@media(max-width:640px){.by{grid-template-columns:1fr;padding:30px;gap:22px}}
+
+/* ---------- Formulir ---------- */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
+.field{display:grid;gap:8px}
+.field.full{grid-column:1/-1}
+.field label{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gray)}
+.field input,.field select,.field textarea{
+  width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);font:inherit;font-size:15px;outline:none;
+  transition:border-color .25s;
+}
+.field textarea{min-height:130px;resize:vertical;line-height:1.55}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(123,92,255,.55)}
+.field input:focus-visible,.field textarea:focus-visible{outline:2px solid rgba(123,92,255,.4);outline-offset:1px}
+.form-actions{grid-column:1/-1;display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.form-actions .alt{font-size:13.5px;color:var(--gray)}
+.form-actions .alt a{color:var(--g2);font-weight:600}
+@media(max-width:700px){.form-grid{grid-template-columns:1fr}}
+@media (pointer: coarse){.field input,.field select,.field textarea{font-size:16px}}
+
+footer{border-top:1px solid var(--line);padding:48px 0 calc(64px + env(safe-area-inset-bottom));
+  font-size:13px;color:var(--gray)}
+.fbar{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+a,button,.who-card,.svc{-webkit-tap-highlight-color:transparent}
+button{-webkit-appearance:none;appearance:none}
+@media (pointer: coarse){.btn.sm{padding:11px 18px}}
+@media print{.nav{display:none!important}.reveal{opacity:1!important;transform:none!important}}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="mark"></span>AWW Corpora</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/services" class="on">Services</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#subsidiaries">Universe</a></li>
+      <li><a href="/#insight">Insight</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="right">
+      <a class="btn sm" href="#contact">Get a quote</a>
+      <button class="burger" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="aura-wrap"><div class="aura"></div></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Available today</p>
+    <h1 class="reveal d1">Finance, accounting<br>and tax, <span class="grad">done properly</span></h1>
+    <p class="lede reveal d2">
+      Company establishment, monthly bookkeeping, and tax compliance for founders and companies
+      operating in Indonesia — handled by a senior specialist, not passed to a junior.
+    </p>
+    <div class="hero-actions reveal d3">
+      <a class="btn grad-btn" href="#contact">Tell me what you need</a>
+      <a class="btn ghost" href="#services">See the services</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== UNTUK SIAPA ===================== -->
+<section class="sec alt">
+  <div class="wrap">
+    <p class="eyebrow reveal">Who this is for</p>
+    <h2 class="reveal d1">Three situations<br>I know well</h2>
+
+    <div class="who">
+      <div class="who-card reveal">
+        <div class="ico">🌱</div>
+        <h3>Founders starting out</h3>
+        <p>You are registering your first company and every form is unfamiliar. You need the entity set up correctly the first time, so you never have to unwind it later.</p>
+      </div>
+      <div class="who-card reveal d1">
+        <div class="ico">📊</div>
+        <h3>Growing SMEs</h3>
+        <p>Revenue is real, the bookkeeping is in a spreadsheet, and tax deadlines arrive faster than you can close the month. You need someone to take it off your desk.</p>
+      </div>
+      <div class="who-card reveal d2">
+        <div class="ico">🌏</div>
+        <h3>Companies entering Indonesia</h3>
+        <p>You are setting up a foreign-owned entity and need local registration, banking, and tax compliance handled by someone who has done it before.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LAYANAN ===================== -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <p class="eyebrow reveal">Services</p>
+    <h2 class="reveal d1">What you can<br><span class="grad">buy today</span></h2>
+    <p class="lede reveal d2">
+      Clear scope, clear price. Everything below is delivered directly, with a written engagement
+      letter before any work starts.
+    </p>
+
+    <div class="svcs">
+
+      <!-- TARIF 1 -->
+      <article class="svc reveal">
+        <div class="svc-body">
+          <h3>Company establishment</h3>
+          <p>Your entity registered correctly and ready to trade — deed, tax number, business licence, and a bank account you can actually operate.</p>
+          <ul>
+            <li>Name reservation and deed of establishment via notary</li>
+            <li>NPWP (corporate tax number) and NIB through OSS</li>
+            <li>Business classification (KBLI) chosen to fit what you will actually do</li>
+            <li>Bank account opening support, including document preparation</li>
+            <li>Guidance on PT Perorangan versus PT versus PT PMA for your case</li>
+          </ul>
+        </div>
+        <div class="svc-price">
+          <div class="lbl">From</div>
+          <div class="amt">Rp 3.500.000</div>
+          <div class="unit">one-off, per entity</div>
+          <div class="note">Notary and government fees billed at cost, shown to you before anything is paid.</div>
+        </div>
+      </article>
+
+      <!-- TARIF 2 -->
+      <article class="svc reveal">
+        <div class="svc-body">
+          <h3>Monthly bookkeeping</h3>
+          <p>Your books closed every month, on time, in software you keep access to. You send documents; you get statements you can actually read.</p>
+          <ul>
+            <li>Transaction recording and general ledger maintenance</li>
+            <li>Bank reconciliation and accounts payable / receivable tracking</li>
+            <li>Month-end close with income statement, balance sheet and cash flow</li>
+            <li>A short written note each month explaining what moved and why</li>
+            <li>Set up in Accurate, Xero or Jurnal — the file stays yours</li>
+          </ul>
+        </div>
+        <div class="svc-price">
+          <div class="lbl">From</div>
+          <div class="amt">Rp 1.500.000</div>
+          <div class="unit">per month</div>
+          <div class="note">Priced on transaction volume. Fixed monthly fee, agreed up front, no hourly surprises.</div>
+        </div>
+      </article>
+
+      <!-- TARIF 3 -->
+      <article class="svc reveal">
+        <div class="svc-body">
+          <h3>Tax compliance</h3>
+          <p>Every filing prepared and submitted before its deadline. Late-filing penalties are entirely avoidable, and avoiding them is the job.</p>
+          <ul>
+            <li>Monthly PPh 21, PPh 23 and PPN calculation and filing</li>
+            <li>e-Faktur issuance and reconciliation</li>
+            <li>Annual corporate tax return (SPT Tahunan Badan)</li>
+            <li>Coretax and DJP Online administration</li>
+            <li>Deadline monitoring, so you are reminded before it matters</li>
+          </ul>
+        </div>
+        <div class="svc-price">
+          <div class="lbl">From</div>
+          <div class="amt">Rp 1.000.000</div>
+          <div class="unit">per month</div>
+          <div class="note">Bundled at a lower rate when taken together with monthly bookkeeping.</div>
+        </div>
+      </article>
+
+      <!-- TARIF 4 -->
+      <article class="svc reveal">
+        <div class="svc-body">
+          <h3>Indonesia market entry</h3>
+          <p>End-to-end support for foreign companies establishing an Indonesian presence — the work I have delivered for overseas enterprises setting up here.</p>
+          <ul>
+            <li>Entity structuring advice and PT PMA establishment</li>
+            <li>Statutory registration and licensing</li>
+            <li>Corporate bank account opening with full documentation</li>
+            <li>Financial statements prepared to Indonesian standards</li>
+            <li>Ongoing local finance and tax representation</li>
+          </ul>
+        </div>
+        <div class="svc-price">
+          <div class="lbl">Scope-based</div>
+          <div class="amt">On request</div>
+          <div class="unit">quoted per engagement</div>
+          <div class="note">Every market-entry case differs. Tell me the shape of it and you get a fixed quote.</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CARA KERJA ===================== -->
+<section class="sec alt">
+  <div class="wrap">
+    <p class="eyebrow reveal">How it works</p>
+    <h2 class="reveal d1">Three steps, no surprises</h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">STEP 01</div>
+        <h3>A conversation</h3>
+        <p>You tell me your situation. I tell you honestly whether I am the right fit — and if I am not, who is.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n">STEP 02</div>
+        <h3>A written scope</h3>
+        <p>An engagement letter setting out exactly what is included, what it costs, and when each deliverable arrives. Nothing starts before you agree to it.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n">STEP 03</div>
+        <h3>The work</h3>
+        <p>Monthly reports on a fixed date. Filings before their deadlines. One person who knows your file and answers directly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SIAPA YANG MENGERJAKAN ===================== -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow reveal">Who does the work</p>
+    <h2 class="reveal d1">One senior specialist,<br>not a call centre</h2>
+
+    <div class="by reveal d1">
+      <div class="avatar">
+        <img src="/assets/axel-headshot.png" alt="Axel Wahyu Wicaksono" width="240" height="240" loading="lazy">
+      </div>
+      <div>
+        <h3>Axel Wahyu Wicaksono</h3>
+        <p>
+          Senior Accounting Specialist with five years across renewable energy, corporate services
+          and technology companies — intercompany accounting for holding-subsidiary groups, month-end
+          close, tax compliance, and company establishment for foreign enterprises entering Indonesia.
+        </p>
+        <div class="creds">
+          <span class="cred">BREVET A&amp;B</span>
+          <span class="cred">ACCURATE · XERO · JURNAL</span>
+          <span class="cred">CORETAX · DJP</span>
+          <span class="cred">GPA 3.77 ACCOUNTING</span>
+        </div>
+        <div class="hero-actions" style="margin-top:22px">
+          <a class="btn ghost sm" href="/portfolio-axel">Full professional background →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KONTAK ===================== -->
+<section class="sec alt" id="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal">Get in touch</p>
+    <h2 class="reveal d1">Tell me what<br><span class="grad">you need</span></h2>
+    <p class="lede reveal d2">
+      The more specific you are, the more useful my first reply will be. I answer every enquiry
+      personally, usually within one working day.
+    </p>
+
+    <form class="form-grid reveal d2" name="enquiry" method="POST"
+          data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="enquiry">
+      <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Nama lengkap">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="nama@perusahaan.com">
+      </div>
+      <div class="field">
+        <label for="f-company">Company <span style="text-transform:none;letter-spacing:0">(if you have one)</span></label>
+        <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="PT ...">
+      </div>
+      <div class="field">
+        <label for="f-service">What do you need</label>
+        <select id="f-service" name="service">
+          <option>Company establishment</option>
+          <option>Monthly bookkeeping</option>
+          <option>Tax compliance</option>
+          <option>Indonesia market entry</option>
+          <option>Not sure yet — help me work it out</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="f-msg">Your situation</label>
+        <textarea id="f-msg" name="message" required
+          placeholder="Contoh: PT baru berdiri 3 bulan lalu, omzet sekitar Rp 40 juta/bulan, pembukuan masih di Excel dan belum pernah lapor PPN."></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn grad-btn" type="submit">Send enquiry</button>
+        <span class="alt">or email directly — <a href="mailto:axelwahyu10@gmail.com">axelwahyu10@gmail.com</a></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap fbar">
+    <div>AWW Corpora · Finance, accounting and tax services</div>
+    <div>© 2026 AWW Corpora</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu(){
+    var nl = document.getElementById('navLinks');
+    nl.classList.toggle('mobile-open');
+    document.body.classList.toggle('menu-open', nl.classList.contains('mobile-open'));
+  }
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){
+      document.getElementById('navLinks').classList.remove('mobile-open');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+  var IOimpl = window.IntersectionObserver || function(){ return { observe:function(){}, unobserve:function(){} }; };
+  var io = new IOimpl(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  var navEl = document.getElementById('nav');
+  var auraEl = document.querySelector('.aura-wrap');
+  var ticking = false;
+  function paint(){
+    navEl.classList.toggle('stuck', window.pageYOffset > 8);
+    if (auraEl) auraEl.style.transform = 'translate3d(0,' + (window.pageYOffset * 0.16) + 'px,0)';
+    ticking = false;
+  }
+  function onScroll(){ if (!ticking) { ticking = true; (window.requestAnimationFrame || setTimeout)(paint); } }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
